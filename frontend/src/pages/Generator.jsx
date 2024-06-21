@@ -56,41 +56,41 @@ const Generator = () => {
   const [showRecommendedPrice, setShowRecommendedPrice] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    const initializeWebViewer = async () => {
-      if (webViewerInstance.current) {
-        return;
-      }
+    useEffect(() => {
+        const initializeWebViewer = async () => {
+            if (webViewerInstance.current) {
+                return;
+            }
 
-      const instance = await WebViewer(
-        {
-          path: '../node_modules/@pdftron/webviewer/public',
-          initialDoc: '/files/example1.docx',
-        },
-        viewerRef.current
-      );
+            const instance = await WebViewer(
+                {
+                    path: '../node_modules/@pdftron/webviewer/public',
+                    initialDoc: '/files/example1.docx',
+                },
+                viewerRef.current
+            );
 
-      webViewerInstance.current = instance;
+            webViewerInstance.current = instance;
 
-      const { documentViewer } = instance.Core;
+            const { documentViewer } = instance.Core;
 
-      documentViewer.addEventListener('documentLoaded', async () => {
-        const doc = documentViewer.getDocument();
-        await doc.getDocumentCompletePromise();
-        documentViewer.updateView();
-      });
+            documentViewer.addEventListener('documentLoaded', async () => {
+                const doc = documentViewer.getDocument();
+                await doc.getDocumentCompletePromise();
+                documentViewer.updateView();
+            });
+        };
+
+        initializeWebViewer();
+    }, [formData]);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
     };
-
-    initializeWebViewer();
-  }, [formData]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
 
   const handleBilledItemsChange = (e, rowIndex, colIndex) => {
     const value = e.target.value;

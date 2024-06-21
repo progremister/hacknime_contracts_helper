@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { $api } from '../api/api';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import googleIcon from '../assets/google_logo.png';
@@ -12,10 +11,6 @@ function LoginPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await $api.post('/api/user/login', {
-                email,
-                password,
-            });
             localStorage.setItem('email', email);
             navigate('/');
         } catch (err) {
