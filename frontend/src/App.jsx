@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import SearchPage from './pages/SearchPage';
 import Generator from './pages/Generator';
+import DocumentPage from './pages/DocumentPage';
 
 const App = () => {
     useEffect(() => {
@@ -16,7 +17,7 @@ const App = () => {
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/' element={<Layout />}>
                 <Route path='/generator' element={<Generator />} />
-                {/* <Route index element={<DocumentPage />} /> */}
+                <Route index='/edit-document' element={<DocumentPage />} />
                 <Route path='/search' element={<SearchPage />} />
             </Route>
             <Route path='*' element={<NotFoundPage />} />

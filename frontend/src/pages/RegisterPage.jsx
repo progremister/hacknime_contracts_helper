@@ -30,9 +30,9 @@ const RegisterPage = () => {
         }
 
         try {
-            await $api.post('/api/user', userData);
+            // await $api.post('/api/user', userData);
             localStorage.setItem('email', email); // Adjust as needed
-            navigate('/'); // Redirect after successful registration
+            navigate('/search'); // Redirect after successful registration
         } catch (error) {
             console.error('Error registering user:', error);
             // Handle error (e.g., show error message)

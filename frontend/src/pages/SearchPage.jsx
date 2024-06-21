@@ -219,20 +219,46 @@ export function DropDown() {
 const data = [
     {
         id: 1,
-        image: 'https://via.placeholder.com/300',
-        name: 'Product 1',
+        image: '../assets/contract-1.png',
+        name: 'Súťažné podklady pre zdravotnictvo',
         rating: 4.5,
+        usages: 1242,
+        comments: [
+            { username: 'user1', text: 'Great template, very useful!' },
+            { username: 'user2', text: 'Helped a lot with my project.' }
+        ]
     },
     {
         id: 2,
         image: 'https://via.placeholder.com/300',
-        name: 'Product 2',
+        name: 'Súťažné podklady pre nehnutelnost',
         rating: 3.7,
+        usages: 343,
+        comments: [
+            { username: 'user3', text: 'Good, but could use some improvements.' },
+            { username: 'user4', text: 'Was okay for my needs.' }
+        ]
     },
     {
         id: 3,
         image: 'https://via.placeholder.com/300',
-        name: 'Product 3',
-        rating: 5.0,
+        name: 'Súťažné podklady pre verejnu dopravu',
+        rating: 4.0,
+        usages: 423,
+        comments: [
+            { username: 'user5', text: 'Very detailed and helpful.' },
+            { username: 'user6', text: 'Made my job a lot easier.' }
+        ]
     },
+    {
+        id: 4,
+        image: 'https://via.placeholder.com/300',
+        name: 'Súťažné podklady pre verejnu technicke zariadenia',
+        rating: 3.8,
+        usages: 423,
+        comments: [
+            { username: 'user7', text: 'Good template, easy to use.' },
+            { username: 'user8', text: 'Met my expectations.' }
+        ]
+    }
 ];
