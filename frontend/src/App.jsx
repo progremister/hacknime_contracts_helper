@@ -13,15 +13,16 @@ const App = () => {
 
     return (
         <Routes>
-            <Route path='/login' element={<LoginPage />} />
-            <Route path='/register' element={<RegisterPage />} />
-            <Route path='/' element={<Layout />}>
-                <Route path='/generator' element={<Generator />} />
-                <Route index='/edit-document' element={<DocumentPage />} />
-                <Route path='/search' element={<SearchPage />} />
-            </Route>
-            <Route path='*' element={<NotFoundPage />} />
-        </Routes>
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/register' element={<RegisterPage />} />
+        <Route path='/' element={<Navigate to='/register' replace />} />
+        <Route element={<Layout />}>
+            <Route path='/generator' element={<Generator />} />
+            <Route path='/edit-document' element={<DocumentPage />} />
+            <Route path='/search' element={<SearchPage />} />
+        </Route>
+        <Route path='*' element={<NotFoundPage />} />
+    </Routes>
     );
 };
 
