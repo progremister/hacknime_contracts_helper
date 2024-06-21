@@ -27,6 +27,7 @@ const DocumentPage = () => {
     const webViewerInstance = useRef(null); // New ref to store the WebViewer instance
 
     useEffect(() => {
+        document.title = `${import.meta.env.VITE_APP_NAME} | Template Viewer`;
         const initializeWebViewer = async () => {
             if (webViewerInstance.current) {
                 return; // Prevent creating multiple instances

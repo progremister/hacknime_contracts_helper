@@ -1,9 +1,15 @@
-import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import DocumentPage from './pages/DocumentPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import SearchPage from './pages/SearchPage';
 
 const App = () => {
+    useEffect(() => {
+        localStorage.setItem('email', 'value');
+    }, []);
+
     return (
         <Routes>
             <Route path='login' element={<LoginPage />} />
@@ -11,6 +17,7 @@ const App = () => {
             <Route path='*' element={<NotFoundPage />} />
             <Route path='/' element={<Layout />}>
                 <Route index element={<DocumentPage />} />
+                <Route path='search' element={<SearchPage />} />
             </Route>
         </Routes>
     );
