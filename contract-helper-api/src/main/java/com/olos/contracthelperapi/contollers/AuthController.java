@@ -1,13 +1,13 @@
 package com.olos.contracthelperapi.contollers;
 
+import com.olos.contracthelperapi.dto.AuthRequest;
+import com.olos.contracthelperapi.dto.JwtResponse;
+import com.olos.contracthelperapi.dto.RegisterRequest;
+import com.olos.contracthelperapi.entities.User;
+import com.olos.contracthelperapi.exceptions.authExceptions.InvalidTokenException;
+import com.olos.contracthelperapi.services.AuthService;
+import com.olos.contracthelperapi.services.RefreshTokenService;
 import jakarta.validation.Valid;
-import kyrylo.delivery.com.deliveryusersmicroservice.dto.AuthRequest;
-import kyrylo.delivery.com.deliveryusersmicroservice.dto.JwtResponse;
-import kyrylo.delivery.com.deliveryusersmicroservice.dto.RegisterRequest;
-import kyrylo.delivery.com.deliveryusersmicroservice.entities.User;
-import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.authExceptions.InvalidTokenException;
-import kyrylo.delivery.com.deliveryusersmicroservice.services.AuthService;
-import kyrylo.delivery.com.deliveryusersmicroservice.services.RefreshTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

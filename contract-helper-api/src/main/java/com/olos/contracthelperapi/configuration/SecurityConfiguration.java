@@ -1,8 +1,8 @@
 package com.olos.contracthelperapi.configuration;
 
-import kyrylo.delivery.com.deliveryusersmicroservice.filter.JwtAuthFilter;
-import kyrylo.delivery.com.deliveryusersmicroservice.repositories.UserRepository;
-import kyrylo.delivery.com.deliveryusersmicroservice.userDetails.DeliveryUserDetailsService;
+import com.olos.contracthelperapi.filter.JwtAuthFilter;
+import com.olos.contracthelperapi.repositories.UserRepository;
+import com.olos.contracthelperapi.userDetails.DeliveryUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

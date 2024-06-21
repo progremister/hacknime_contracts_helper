@@ -1,33 +1,33 @@
 package com.olos.contracthelperapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
-@Entity
+@Document(collection = "users")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
 
-    @Column(nullable = false, unique = true)
+    @Id
+    private String userId;
+
+    @Indexed(unique = true)
     private String username;
 
-    @Column(nullable = false)
     @JsonIgnore
     private String password;
 
-    @Column(nullable = false, unique = true)
+    @Indexed(unique = true)
     private String email;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id")
+    @DBRef
     @JsonIgnore
     private Role role;
 }

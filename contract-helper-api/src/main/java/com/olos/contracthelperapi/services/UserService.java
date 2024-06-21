@@ -1,13 +1,13 @@
 package com.olos.contracthelperapi.services;
 
-import kyrylo.delivery.com.deliveryusersmicroservice.dto.RegisterRequest;
-import kyrylo.delivery.com.deliveryusersmicroservice.entities.User;
-import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.roleExceptions.RoleNotFoundException;
-import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.usersException.UserNotFoundException;
-import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.usersException.UsernameAlreadyExistsException;
-import kyrylo.delivery.com.deliveryusersmicroservice.repositories.RoleRepository;
-import kyrylo.delivery.com.deliveryusersmicroservice.repositories.UserRepository;
-import kyrylo.delivery.com.deliveryusersmicroservice.entities.Role;
+import com.olos.contracthelperapi.dto.RegisterRequest;
+import com.olos.contracthelperapi.entities.Role;
+import com.olos.contracthelperapi.entities.User;
+import com.olos.contracthelperapi.exceptions.roleExceptions.RoleNotFoundException;
+import com.olos.contracthelperapi.exceptions.usersException.UserNotFoundException;
+import com.olos.contracthelperapi.exceptions.usersException.UsernameAlreadyExistsException;
+import com.olos.contracthelperapi.repositories.RoleRepository;
+import com.olos.contracthelperapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,12 +19,10 @@ import org.apache.logging.log4j.Logger;
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
-
-    private RoleRepository roleRepository;
-
-    private PasswordEncoder passwordEncoder;
-    private RefreshTokenService refreshTokenService;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final RefreshTokenService refreshTokenService;
     private static final Logger logger = LogManager.getLogger(UserService.class);
 
     @Autowired
@@ -43,7 +41,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(Long userId) {
+    public User getUserById(String userId) {
         logger.info("Fetching user with ID: {}", userId);
         return userRepository.findById(userId).orElseThrow(() -> {
             logger.error("User not found with ID: {}", userId);
@@ -51,7 +49,7 @@ public class UserService {
         });
     }
 
-    public User updateUser(Long userId, RegisterRequest updatedUser) {
+    public User updateUser(String userId, RegisterRequest updatedUser) {
         logger.info("Updating user with ID: {}", userId);
         User existingUser = userRepository.findById(userId).orElseThrow(() -> {
             logger.error("User not found with ID: {}", userId);
@@ -84,7 +82,7 @@ public class UserService {
         return updated;
     }
 
-    public void deleteUser(Long userId) {
+    public void deleteUser(String userId) {
         logger.info("Deleting user with ID: {}", userId);
         if (!userRepository.existsById(userId)) {
             logger.error("User not found with ID: {}", userId);
@@ -103,7 +101,7 @@ public class UserService {
         return exists;
     }
 
-    public boolean existsById(Long userId) {
+    public boolean existsById(String userId) {
         logger.info("Checking if user exists with ID: {}", userId);
         boolean exists = userRepository.existsById(userId);
         logger.info("User with ID {} exists: {}", userId, exists);

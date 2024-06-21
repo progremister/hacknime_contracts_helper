@@ -1,15 +1,15 @@
 package com.olos.contracthelperapi.services;
 
-import kyrylo.delivery.com.deliveryusersmicroservice.dto.JwtResponse;
-import kyrylo.delivery.com.deliveryusersmicroservice.dto.RegisterRequest;
-import kyrylo.delivery.com.deliveryusersmicroservice.entities.RefreshToken;
-import kyrylo.delivery.com.deliveryusersmicroservice.entities.Role;
-import kyrylo.delivery.com.deliveryusersmicroservice.entities.User;
-import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.authExceptions.InvalidTokenException;
-import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.authExceptions.RegistrationException;
-import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.roleExceptions.RoleNotFoundException;
-import kyrylo.delivery.com.deliveryusersmicroservice.repositories.RoleRepository;
-import kyrylo.delivery.com.deliveryusersmicroservice.repositories.UserRepository;
+import com.olos.contracthelperapi.dto.JwtResponse;
+import com.olos.contracthelperapi.dto.RegisterRequest;
+import com.olos.contracthelperapi.entities.RefreshToken;
+import com.olos.contracthelperapi.entities.Role;
+import com.olos.contracthelperapi.entities.User;
+import com.olos.contracthelperapi.exceptions.authExceptions.InvalidTokenException;
+import com.olos.contracthelperapi.exceptions.authExceptions.RegistrationException;
+import com.olos.contracthelperapi.exceptions.roleExceptions.RoleNotFoundException;
+import com.olos.contracthelperapi.repositories.RoleRepository;
+import com.olos.contracthelperapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;

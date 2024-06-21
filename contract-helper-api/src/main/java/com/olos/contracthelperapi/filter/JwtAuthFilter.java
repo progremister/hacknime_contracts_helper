@@ -1,5 +1,7 @@
 package com.olos.contracthelperapi.filter;
 
+import com.olos.contracthelperapi.services.JwtService;
+import com.olos.contracthelperapi.userDetails.DeliveryUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,8 +16,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import kyrylo.delivery.com.deliveryusersmicroservice.services.JwtService;
-import kyrylo.delivery.com.deliveryusersmicroservice.userDetails.DeliveryUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.IOException;

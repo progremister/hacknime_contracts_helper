@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.exceptions.authExceptions;
+package com.olos.contracthelperapi.exceptions.authExceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

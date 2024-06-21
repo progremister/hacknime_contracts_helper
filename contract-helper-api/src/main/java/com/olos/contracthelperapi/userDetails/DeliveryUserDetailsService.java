@@ -1,7 +1,7 @@
 package com.olos.contracthelperapi.userDetails;
 
-import kyrylo.delivery.com.deliveryusersmicroservice.entities.User;
-import kyrylo.delivery.com.deliveryusersmicroservice.repositories.UserRepository;
+import com.olos.contracthelperapi.entities.User;
+import com.olos.contracthelperapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,8 +1,8 @@
 package com.olos.contracthelperapi.services;
 
-import kyrylo.delivery.com.deliveryusersmicroservice.entities.RefreshToken;
-import kyrylo.delivery.com.deliveryusersmicroservice.repositories.RefreshTokenRepository;
-import kyrylo.delivery.com.deliveryusersmicroservice.repositories.UserRepository;
+import com.olos.contracthelperapi.entities.RefreshToken;
+import com.olos.contracthelperapi.repositories.RefreshTokenRepository;
+import com.olos.contracthelperapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

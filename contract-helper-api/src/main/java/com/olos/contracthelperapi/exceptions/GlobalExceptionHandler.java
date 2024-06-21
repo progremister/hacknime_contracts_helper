@@ -1,12 +1,12 @@
 package com.olos.contracthelperapi.exceptions;
 
-import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.authExceptions.InvalidTokenException;
-import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.authExceptions.RegistrationException;
-import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.roleExceptions.RoleAlreadyExistsException;
-import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.roleExceptions.RoleNotFoundException;
-import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.usersException.EmailNotFoundException;
-import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.usersException.UserNotFoundException;
-import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.usersException.UsernameAlreadyExistsException;
+import com.olos.contracthelperapi.exceptions.authExceptions.InvalidTokenException;
+import com.olos.contracthelperapi.exceptions.authExceptions.RegistrationException;
+import com.olos.contracthelperapi.exceptions.roleExceptions.RoleAlreadyExistsException;
+import com.olos.contracthelperapi.exceptions.roleExceptions.RoleNotFoundException;
+import com.olos.contracthelperapi.exceptions.usersException.EmailNotFoundException;
+import com.olos.contracthelperapi.exceptions.usersException.UserNotFoundException;
+import com.olos.contracthelperapi.exceptions.usersException.UsernameAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

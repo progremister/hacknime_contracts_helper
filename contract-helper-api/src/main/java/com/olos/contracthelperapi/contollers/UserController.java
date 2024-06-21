@@ -1,10 +1,10 @@
-package com.olos.contracthelperapi.contollers;
+package com.olos.contracthelperapi.controllers;
 
+import com.olos.contracthelperapi.dto.RegisterRequest;
+import com.olos.contracthelperapi.entities.User;
+import com.olos.contracthelperapi.exceptions.usersException.EmailNotFoundException;
+import com.olos.contracthelperapi.services.UserService;
 import jakarta.validation.Valid;
-import kyrylo.delivery.com.deliveryusersmicroservice.dto.RegisterRequest;
-import kyrylo.delivery.com.deliveryusersmicroservice.entities.User;
-import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.usersException.EmailNotFoundException;
-import kyrylo.delivery.com.deliveryusersmicroservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
     private static final Logger logger = LogManager.getLogger(UserController.class);
 
     @Autowired
@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public User getUserById(@PathVariable Long userId) {
+    public User getUserById(@PathVariable String userId) {
         logger.info("Request to get user by ID: {}", userId);
         try {
             User user = userService.getUserById(userId);
@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @GetMapping("/exists/{userId}")
-    public ResponseEntity<Boolean> existsById(@PathVariable Long userId) {
+    public ResponseEntity<Boolean> existsById(@PathVariable String userId) {
         logger.info("Checking if user exists with ID: {}", userId);
         boolean exists = userService.existsById(userId);
         logger.info("User exists with ID {}: {}", userId, exists);
@@ -57,7 +57,7 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public User updateUser(@PathVariable Long userId, @Valid @RequestBody RegisterRequest registerRequest) {
+    public User updateUser(@PathVariable String userId, @Valid @RequestBody RegisterRequest registerRequest) {
         logger.info("Request to update user with ID: {}", userId);
         try {
             User updatedUser = userService.updateUser(userId, registerRequest);
@@ -70,7 +70,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
-    public void deleteUser(@PathVariable Long userId) {
+    public void deleteUser(@PathVariable String userId) {
         logger.info("Request to delete user with ID: {}", userId);
         try {
             userService.deleteUser(userId);

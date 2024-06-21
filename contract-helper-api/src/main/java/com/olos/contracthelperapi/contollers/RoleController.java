@@ -1,8 +1,8 @@
-package com.olos.contracthelperapi.contollers;
+package com.olos.contracthelperapi.controllers;
 
+import com.olos.contracthelperapi.entities.Role;
+import com.olos.contracthelperapi.services.RoleService;
 import jakarta.validation.Valid;
-import kyrylo.delivery.com.deliveryusersmicroservice.entities.Role;
-import kyrylo.delivery.com.deliveryusersmicroservice.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("api/roles")
 public class RoleController {
 
-    private RoleService roleService;
+    private final RoleService roleService;
     private static final Logger logger = LogManager.getLogger(RoleController.class);
 
     @Autowired
@@ -34,9 +34,8 @@ public class RoleController {
         return ResponseEntity.ok(roles);
     }
 
-
     @GetMapping("/{roleId}")
-    public Role getRoleById(@PathVariable Long roleId) {
+    public Role getRoleById(@PathVariable String roleId) {
         logger.info("Received request to get role by ID: {}", roleId);
         try {
             Role role = roleService.getRoleById(roleId);
@@ -62,7 +61,7 @@ public class RoleController {
     }
 
     @PutMapping("/{roleId}")
-    public Role updateRole(@PathVariable Long roleId, @Valid @RequestBody Role updatingRole) {
+    public Role updateRole(@PathVariable String roleId, @Valid @RequestBody Role updatingRole) {
         logger.info("Received request to update role with ID: {}", roleId);
         try {
             Role updatedRole = roleService.updateRole(roleId, updatingRole);
@@ -75,7 +74,7 @@ public class RoleController {
     }
 
     @DeleteMapping("/{roleId}")
-    public ResponseEntity<String> deleteRole(@PathVariable Long roleId) {
+    public ResponseEntity<String> deleteRole(@PathVariable String roleId) {
         logger.info("Received request to delete role with ID: {}", roleId);
         try {
             roleService.deleteRole(roleId);

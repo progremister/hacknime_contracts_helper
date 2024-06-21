@@ -1,21 +1,23 @@
 package com.olos.contracthelperapi.entities;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.index.Indexed;
+import jakarta.validation.constraints.NotBlank;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Document(collection = "roles")
 public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long roleId;
 
-    @Column(nullable = false, unique = true)
+    @Id
+    private String roleId;
+
+    @Indexed(unique = true)
     @NotBlank(message = "Role name is required")
     private String name;
 }
