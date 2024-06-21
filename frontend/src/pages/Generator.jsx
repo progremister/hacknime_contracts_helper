@@ -3,20 +3,35 @@ import { useEffect, useRef, useState } from 'react';
 import ChatWidget from '../components/ChatWidget/ChatWidget';
 
 const initialJsonData = {
-  "NAZOV_ZAKAZKY_1": 'Kvetinače',
-  "OSOBA_1": 'Dmytro Kolosovskyi',
-  "MANAZER_VO": 'Dmytro Kolosovskyi',
+  "NAZOV_ZAKAZKY": 'Kvetinače',
+  "SKRATLA": "Kv.",
+  "ZDROJE_FINANCOVANIE": "urad",
+  "TYP_ZMLUVY": "zmluva",
+  "DEADLINE": "25.08.2025",
+  "TABLE_2": {
+    insert_rows: [
+        ["1", "Dokument 1", "1"],
+        ["2", "Dokument 2", "9"],
+        ["3", "Dokument 3", "21"],
+    ]
+  },
+  "TABLE_3": {
+    insert_rows: [
+      ["1", "Subdodavatel 1", "1234", "10%", "Predmet 1"],
+      ["2", "Subdodavatel 2", "1234", "10%", "Predmet 3"],
+      ["3", "Subdodavatel 3", "1234", "10%", "Predmet 5"],
+    ]
+  },
+  "OSOBA_1": 'Oleksandr Kalenskyy',
+  "MANAZER_VO": 'Kyrylo Bulyk',
   "OSOBA_2": 'Dmytro Kolosovskyi',
-  "DATUM_1": "22.06.2024",
-  "NAZOV_ZAKAZKY_2": 'Kvetinače',
-  "DATUM_2": "22.06.2024",
-  "ODKAZ_1": "https://www.google.com",
-  "ODKAZ_2": "https://www.google.com",
-  "NAZOV_ZAKAZKY_3": 'Kvetinače',
+  "DATUM": "22.06.2024",
+  "ODKAZ": "https://www.google.com",
   "CPV_1": "1",
   "CPV_2": "2",
-  "HODNOTA_1": "20",
-  "TRH_1": "trhu kvetinacov",
+  "HODNOTA": "20",
+  "POPIS": "pekny kvetinac",
+  "TRH": "trhu kvetinacov",
   "TABLE": {
     insert_rows: [
         ["Kventinac", "1", "1", "20%", "10", "20", "30", "40"],
@@ -24,8 +39,7 @@ const initialJsonData = {
     ]
   },
   "MESTO": "Bratislave",
-  "DATUM_3": "22.06.2024",
-  "MENO_PRIEZVISKO_1": "Dmytro Kolosovskyi"
+  "MENO_PRIEZVISKO": "Dmytro Kolosovskyi"
 };
 
 const Generator = () => {
@@ -129,10 +143,10 @@ const Generator = () => {
                   />
                 </div>
               )}
-              {key === 'TABLE' && (
+              {key.includes('TABLE') && (
                 <div key={key} className='mb-4'>
-                  <label className='block text-gray-700 font-bold mb-1'>billed_items:</label>
-                  {formData.TABLE.insert_rows.map((row, rowIndex) => (
+                  <label className='block text-gray-700 font-bold mb-1'>{key}:</label>
+                  {formData[key].insert_rows.map((row, rowIndex) => (
                     <div key={rowIndex} className='flex items-center space-x-2 mt-1'>
                       {row.map((item, colIndex) => (
                         <input
