@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.entities;
+package com.olos.contracthelperapi.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

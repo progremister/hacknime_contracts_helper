@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.services;
+package com.olos.contracthelperapi.services;
 
 import kyrylo.delivery.com.deliveryusersmicroservice.entities.RefreshToken;
 import kyrylo.delivery.com.deliveryusersmicroservice.repositories.RefreshTokenRepository;

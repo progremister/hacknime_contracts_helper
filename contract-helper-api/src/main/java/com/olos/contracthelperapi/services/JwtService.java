@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.services;
+package com.olos.contracthelperapi.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

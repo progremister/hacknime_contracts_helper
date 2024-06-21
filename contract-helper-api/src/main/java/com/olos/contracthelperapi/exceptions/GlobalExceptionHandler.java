@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.exceptions;
+package com.olos.contracthelperapi.exceptions;
 
 import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.authExceptions.InvalidTokenException;
 import kyrylo.delivery.com.deliveryusersmicroservice.exceptions.authExceptions.RegistrationException;

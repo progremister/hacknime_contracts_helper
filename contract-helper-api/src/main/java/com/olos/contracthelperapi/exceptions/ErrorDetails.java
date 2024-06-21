@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.exceptions;
+package com.olos.contracthelperapi.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

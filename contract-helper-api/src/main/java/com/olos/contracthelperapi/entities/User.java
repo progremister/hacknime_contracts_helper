@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.entities;
+package com.olos.contracthelperapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

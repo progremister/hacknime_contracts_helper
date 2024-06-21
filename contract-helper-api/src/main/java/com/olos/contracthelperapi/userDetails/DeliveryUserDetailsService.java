@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.userDetails;
+package com.olos.contracthelperapi.userDetails;
 
 import kyrylo.delivery.com.deliveryusersmicroservice.entities.User;
 import kyrylo.delivery.com.deliveryusersmicroservice.repositories.UserRepository;

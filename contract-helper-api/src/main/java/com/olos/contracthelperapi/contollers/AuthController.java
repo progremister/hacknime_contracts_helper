@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.contollers;
+package com.olos.contracthelperapi.contollers;
 
 import jakarta.validation.Valid;
 import kyrylo.delivery.com.deliveryusersmicroservice.dto.AuthRequest;

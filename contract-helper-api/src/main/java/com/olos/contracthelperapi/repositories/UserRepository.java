@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.repositories;
+package com.olos.contracthelperapi.repositories;
 
 import kyrylo.delivery.com.deliveryusersmicroservice.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;

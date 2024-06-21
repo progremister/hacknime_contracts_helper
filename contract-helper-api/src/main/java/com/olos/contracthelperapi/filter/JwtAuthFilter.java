@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.filter;
+package com.olos.contracthelperapi.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

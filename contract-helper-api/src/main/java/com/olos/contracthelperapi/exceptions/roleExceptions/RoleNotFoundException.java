@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.exceptions.roleExceptions;
+package com.olos.contracthelperapi.exceptions.roleExceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

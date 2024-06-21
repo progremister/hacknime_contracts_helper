@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.dto;
+package com.olos.contracthelperapi.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
