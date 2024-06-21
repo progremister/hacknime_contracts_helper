@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { $api } from '../api/api';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import googleIcon from '../assets/google_logo.png';
 
 function LoginPage() {
     const navigate = useNavigate();
@@ -72,7 +73,7 @@ function LoginPage() {
                         type='submit'
                         className='w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600'
                     >
-                        Submit
+                        Sign in
                     </button>
                 </form>
                 <p className='text-gray-700 text-center pt-4 text-sm sm:text-base'>
@@ -81,6 +82,13 @@ function LoginPage() {
                         Create an account
                     </Link>
                 </p>
+                <button
+                    type='submit'
+                    className='w-full bg-purple-400 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600 flex items-center justify-center gap-4 duration-100 mt-3'
+                >
+                    <img src={googleIcon} alt='' className='max-w-5 max-h-5' />
+                    <span>Login with Google</span>
+                </button>
             </div>
         </div>
     );
