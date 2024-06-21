@@ -1,6 +1,8 @@
 package com.olos.contracthelperapi.services;
 
 import com.olos.contracthelperapi.entities.RefreshToken;
+import com.olos.contracthelperapi.entities.User;
+import com.olos.contracthelperapi.exceptions.usersException.UserNotFoundException;
 import com.olos.contracthelperapi.repositories.RefreshTokenRepository;
 import com.olos.contracthelperapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +24,15 @@ public class RefreshTokenService {
         this.userRepository = userRepository;
     }
 
-    public Optional<RefreshToken> findByUsername(String username) {
-        return refreshTokenRepository.findByUser_Username(username);
-    }
-
     public Optional<RefreshToken> findByUserId(String userId) {
         return refreshTokenRepository.findByUserId(userId);
     }
 
-    public RefreshToken createRefreshToken(String username) {
+    public RefreshToken createRefreshToken(String userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+
         RefreshToken refreshToken = RefreshToken.builder()
-                .user(userRepository.findByUsername(username).get())
+                .userId(user.getUserId())
                 .token(UUID.randomUUID().toString())
                 .expiryDate(Instant.now().plusMillis(1000 * 604800))
                 .build();
@@ -53,8 +53,8 @@ public class RefreshTokenService {
         return refreshTokenRepository.save(refreshToken);
     }
 
-    public void deleteByUsername(String username) {
-        refreshTokenRepository.findByUser_Username(username).ifPresent(refreshToken -> {
+    public void deleteByUserId(String userId) {
+        refreshTokenRepository.findByUserId(userId).ifPresent(refreshToken -> {
             refreshTokenRepository.delete(refreshToken);
         });
     }

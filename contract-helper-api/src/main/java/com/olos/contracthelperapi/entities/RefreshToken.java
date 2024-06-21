@@ -25,6 +25,4 @@ public class RefreshToken {
 
     private String userId;
 
-    @DBRef
-    private User user;
 }

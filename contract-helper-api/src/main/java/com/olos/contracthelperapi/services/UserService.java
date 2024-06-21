@@ -64,7 +64,7 @@ public class UserService {
 
         if (!existingUser.getUsername().equals(updatedUser.username())) {
             logger.info("Changing username for user ID: {} from {} to {}", userId, existingUser.getUsername(), updatedUser.username());
-            refreshTokenService.deleteByUsername(existingUser.getUsername());
+            refreshTokenService.deleteByUserId(existingUser.getUserId());
             existingUser.setUsername(updatedUser.username());
         }
 
@@ -89,7 +89,7 @@ public class UserService {
             throw new UserNotFoundException(userId);
         }
 
-        refreshTokenService.deleteByUsername(getUserById(userId).getUsername());
+        refreshTokenService.deleteByUserId(userId);
         userRepository.deleteById(userId);
         logger.info("User deleted with ID: {}", userId);
     }

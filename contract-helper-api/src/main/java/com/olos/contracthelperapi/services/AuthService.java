@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -99,7 +100,12 @@ public class AuthService {
         String onlyBearerToken = bearerToken.substring(7);
         String username = extractUsername(onlyBearerToken);
 
-        RefreshToken existingRefreshToken = refreshTokenService.findByUsername(username)
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        logger.info("UserDetails: {}", user);
+
+        RefreshToken existingRefreshToken = refreshTokenService.findByUserId(user.getUserId())
                 .orElseThrow(() -> new RuntimeException("Refresh Token not found"));
 
         refreshTokenService.verifyExpiration(existingRefreshToken);
@@ -121,7 +127,12 @@ public class AuthService {
         String refreshTokenValue = bearerToken.substring(7);
         String username = this.extractUsername(refreshTokenValue);
 
-        refreshTokenService.deleteByUsername(username);
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        logger.info("UserDetails: {}", user);
+
+        refreshTokenService.deleteByUserId(user.getUserId());
         logger.info("User logged out successfully: {}", username);
     }
 }

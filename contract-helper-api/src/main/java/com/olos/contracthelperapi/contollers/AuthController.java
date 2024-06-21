@@ -64,7 +64,7 @@ public class AuthController {
 
         refreshTokenService.findByUserId(user.getUserId())
                 .map(refreshTokenService::updateRefreshToken)
-                .orElseGet(() -> refreshTokenService.createRefreshToken(user.getUsername()));
+                .orElseGet(() -> refreshTokenService.createRefreshToken(user.getUserId()));
 
         String accessToken = authService.generateToken(userDetails);
         logger.info("Token generated for user: {}", authRequest.username());
