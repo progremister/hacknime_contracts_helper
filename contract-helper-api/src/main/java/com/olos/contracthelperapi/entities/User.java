@@ -16,7 +16,7 @@ public class User {
     private Role role;
 
     @DBRef
-    private List<Document> documents;
+    private List<Contract> documents;
 
     // Getters and setters
 
@@ -60,11 +60,11 @@ public class User {
         this.role = role;
     }
 
-    public List<Document> getDocuments() {
+    public List<Contract> getDocuments() {
         return documents;
     }
 
-    public void setDocuments(List<Document> documents) {
+    public void setDocuments(List<Contract> documents) {
         this.documents = documents;
     }
 }
