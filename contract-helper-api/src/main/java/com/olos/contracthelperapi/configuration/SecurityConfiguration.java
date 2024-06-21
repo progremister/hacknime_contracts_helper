@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.configuration;
+package com.olos.contracthelperapi.configuration;
 
 import kyrylo.delivery.com.deliveryusersmicroservice.filter.JwtAuthFilter;
 import kyrylo.delivery.com.deliveryusersmicroservice.repositories.UserRepository;

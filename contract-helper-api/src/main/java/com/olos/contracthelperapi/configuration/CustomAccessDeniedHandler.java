@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.configuration;
+package com.olos.contracthelperapi.configuration;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;

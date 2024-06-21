@@ -1,4 +1,4 @@
-package kyrylo.delivery.com.deliveryusersmicroservice.configuration;
+package com.olos.contracthelperapi.configuration;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
