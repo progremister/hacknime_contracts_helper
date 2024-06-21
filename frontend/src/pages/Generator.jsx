@@ -2,24 +2,29 @@ import WebViewer from '@pdftron/webviewer';
 import { useEffect, useRef, useState } from 'react';
 
 const initialJsonData = {
-  COMPANY_NAME: 'OLOS',
-  CUSTOMER_NAME: 'Dmytro Kolosovskyi',
-  CompanyAddressLine1: '838 W Hastings St 5th floor',
-  CompanyAddressLine2: 'Vancouver, BC V6C 0A6',
-  CustomerAddressLine1: '123 Main Street',
-  CustomerAddressLine2: 'Vancouver, BC V6A 2S5',
-  Date: 'Nov 5th, 2021',
-  ExpiryDate: 'Dec 5th, 2021',
-  QuoteNumber: '134',
-  WEBSITE: 'https://www.hacknime.to/',
-  billed_items: {
+  "NAZOV_ZAKAZKY_1": 'Kvetinače',
+  "OSOBA_1": 'Dmytro Kolosovskyi',
+  "MANAZER_VO": 'Dmytro Kolosovskyi',
+  "OSOBA_2": 'Dmytro Kolosovskyi',
+  "DATUM_1": "22.06.2024",
+  "NAZOV_ZAKAZKY_2": 'Kvetinače',
+  "DATUM_2": "22.06.2024",
+  "ODKAZ_1": "https://www.google.com",
+  "ODKAZ_2": "https://www.google.com",
+  "NAZOV_ZAKAZKY_3": 'Kvetinače',
+  "CPV_1": "1",
+  "CPV_2": "2",
+  "HODNOTA_1": "20",
+  "TRH_1": "trhu kvetinacov",
+  "TABLE": {
     insert_rows: [
-      ['Apples', '3', '$5.00', '$15.00'],
-      ['Oranges', '2', '$5.00', '$10.00'],
-    ],
+        ["Kventinac", "1", "1", "20%", "10", "20", "30", "40"],
+        ["Kventinac", "1", "1", "20%", "10", "20", "30", "40"]
+    ]
   },
-  days: '30',
-  total: '$25.00',
+  "MESTO": "Bratislave",
+  "DATUM_3": "22.06.2024",
+  "MENO_PRIEZVISKO_1": "Dmytro Kolosovskyi"
 };
 
 const Generator = () => {
@@ -36,7 +41,7 @@ const Generator = () => {
       const instance = await WebViewer(
         {
           path: '../node_modules/@pdftron/webviewer/public',
-          initialDoc: '/files/quote.docx',
+          initialDoc: '/files/example1.docx',
         },
         viewerRef.current
       );
@@ -107,7 +112,7 @@ const Generator = () => {
         <form onSubmit={handleSubmit} className='p-4 max-h-full overflow-y-scroll w-1/2'>
           {Object.keys(initialJsonData).map((key) => (
             <>
-              {key !== 'billed_items' && (
+              {key !== 'TABLE' && (
                 <div key={key} className='mb-4'>
                   <label className='block text-gray-700 font-bold mb-1'>{key}:</label>
                   <input
@@ -119,10 +124,10 @@ const Generator = () => {
                   />
                 </div>
               )}
-              {key === 'billed_items' && (
+              {key === 'TABLE' && (
                 <div key={key} className='mb-4'>
                   <label className='block text-gray-700 font-bold mb-1'>billed_items:</label>
-                  {formData.billed_items.insert_rows.map((row, rowIndex) => (
+                  {formData.TABLE.insert_rows.map((row, rowIndex) => (
                     <div key={rowIndex} className='flex items-center space-x-2 mt-1'>
                       {row.map((item, colIndex) => (
                         <input
