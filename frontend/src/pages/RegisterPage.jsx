@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { $api } from '../api/api';
 import { useNavigate } from 'react-router-dom';
+import googleIcon from '../assets/google_logo.png';
 
 const RegisterPage = () => {
     const [userData, setUserData] = useState({
@@ -126,7 +127,14 @@ const RegisterPage = () => {
                         type='submit'
                         className='w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600'
                     >
-                        Submit
+                        Register
+                    </button>
+                    <button
+                        type='submit'
+                        className='w-full bg-purple-400 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600 flex items-center justify-center gap-4 duration-100 mt-3'
+                    >
+                        <img src={googleIcon} alt='' className='max-w-5 max-h-5' />
+                        <span>Create account with Google</span>
                     </button>
                 </form>
             </div>
