@@ -6,21 +6,27 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.Map;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Document(collection = "contracts")
 public class Contract {
     @Id
+    @Schema(description = "Unique identifier of the contract", example = "12345")
     private Long id;
 
     @DBRef
+    @Schema(description = "List of users involved in the contract")
     private List<User> members;
 
     @DBRef
+    @Schema(description = "User who created the contract")
     private User creator;
 
     @DBRef
+    @Schema(description = "Template used for the contract")
     private Template template;
 
+    @Schema(description = "Values associated with the contract", example = "{\"startDate\": \"2023-01-01\", \"endDate\": \"2023-12-31\", \"totalAmount\": \"10000\"}")
     private Map<String, String> values;
 
     // Getters and setters
@@ -65,4 +71,3 @@ public class Contract {
         this.values = values;
     }
 }
-

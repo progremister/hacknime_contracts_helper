@@ -1,14 +1,21 @@
 package com.olos.contracthelperapi.entities;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
 
 @Document(collection = "templates")
 public class Template {
     @Id
+    @Schema(description = "Unique identifier of the template", example = "1")
     private Long id;
+
+    @Schema(description = "URL of the S3 bucket where the template is stored", example = "https://s3.amazonaws.com/bucket/template.docx")
     private String urlS3Bucket;
+
+    @Schema(description = "Keys associated with the template", example = "[\"name\", \"date\", \"amount\"]")
     private List<String> keys;
 
     // Getters and setters
@@ -37,4 +44,3 @@ public class Template {
         this.keys = keys;
     }
 }
-
