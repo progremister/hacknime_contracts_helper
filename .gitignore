@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+!/.gitignore
+!/pom.xml
+!/README.md
+
+!/src
+!/src/main/**
+!/src/test/**

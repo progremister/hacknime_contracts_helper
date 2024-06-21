@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
+import { useEffect } from 'react';
+import Card from '../components/Card';
 
 const SearchPage = () => {
     useEffect(() => {
@@ -32,7 +32,11 @@ const SearchPage = () => {
                     </div>
                     <DropDown />
                 </div>
-
+                <div className='flex flex-wrap justify-between pb-20'>
+                    {data.map((item) => (
+                        <Card key={item.id} {...item} />
+                    ))}
+                </div>
                 <Example />
             </div>
         </div>
@@ -211,3 +215,24 @@ export function DropDown() {
         </Menu>
     );
 }
+
+const data = [
+    {
+        id: 1,
+        image: 'https://via.placeholder.com/300',
+        name: 'Product 1',
+        rating: 4.5,
+    },
+    {
+        id: 2,
+        image: 'https://via.placeholder.com/300',
+        name: 'Product 2',
+        rating: 3.7,
+    },
+    {
+        id: 3,
+        image: 'https://via.placeholder.com/300',
+        name: 'Product 3',
+        rating: 5.0,
+    },
+];
