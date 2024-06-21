@@ -26,6 +26,10 @@ public class RefreshTokenService {
         return refreshTokenRepository.findByUser_Username(username);
     }
 
+    public Optional<RefreshToken> findByUserId(String userId) {
+        return refreshTokenRepository.findByUserId(userId);
+    }
+
     public RefreshToken createRefreshToken(String username) {
         RefreshToken refreshToken = RefreshToken.builder()
                 .user(userRepository.findByUsername(username).get())

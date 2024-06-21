@@ -23,6 +23,8 @@ public class RefreshToken {
     private String token;
     private Instant expiryDate;
 
+    private String userId;
+
     @DBRef
     private User user;
 }
