@@ -1,6 +1,9 @@
 import WebViewer from '@pdftron/webviewer';
 import { useEffect, useRef, useState } from 'react';
 import ChatWidget from '../components/ChatWidget/ChatWidget';
+import Header from '../components/Header';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuestion, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const initialJsonData = {
   "NAZOV_ZAKAZKY_1": 'Kvetinače',
@@ -28,10 +31,30 @@ const initialJsonData = {
   "MENO_PRIEZVISKO_1": "Dmytro Kolosovskyi"
 };
 
+const Modal = ({ show, onClose }) => {
+  if (!show) return null;
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="bg-white p-4 rounded shadow-lg w-96 relative">
+        <h2 className="text-xl font-bold mb-4">Recommended Price Info</h2>
+        <p>This price is calculated based on various market factors and historical data.</p>
+        <button
+          className="mt-4  px-4 py-2 absolute top-[0.1rem] right-3 hover:cursor-pointer hover:scale-[1.10]"
+          onClick={onClose}
+        >   
+            <FontAwesomeIcon icon={faXmark} />        
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const Generator = () => {
   const viewerRef = useRef(null);
   const webViewerInstance = useRef(null);
   const [formData, setFormData] = useState(initialJsonData);
+  const [showRecommendedPrice, setShowRecommendedPrice] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const initializeWebViewer = async () => {
@@ -71,28 +94,28 @@ const Generator = () => {
 
   const handleBilledItemsChange = (e, rowIndex, colIndex) => {
     const value = e.target.value;
-    const updatedRows = formData.billed_items.insert_rows.map((row, rIndex) =>
+    const updatedRows = formData.TABLE.insert_rows.map((row, rIndex) =>
       rIndex === rowIndex ? row.map((col, cIndex) => (cIndex === colIndex ? value : col)) : row
     );
     setFormData((prevData) => ({
       ...prevData,
-      billed_items: { insert_rows: updatedRows },
+      TABLE: { insert_rows: updatedRows },
     }));
   };
 
   const handleAddRow = () => {
-    const updatedRows = [...formData.billed_items.insert_rows, ['', '', '', '']];
+    const updatedRows = [...formData.TABLE.insert_rows, ['', '', '', '', '', '', '', '']];
     setFormData((prevData) => ({
       ...prevData,
-      billed_items: { insert_rows: updatedRows },
+      TABLE: { insert_rows: updatedRows },
     }));
   };
 
   const handleRemoveRow = (rowIndex) => {
-    const updatedRows = formData.billed_items.insert_rows.filter((_, rIndex) => rIndex !== rowIndex);
+    const updatedRows = formData.TABLE.insert_rows.filter((_, rIndex) => rIndex !== rowIndex);
     setFormData((prevData) => ({
       ...prevData,
-      billed_items: { insert_rows: updatedRows },
+      TABLE: { insert_rows: updatedRows },
     }));
   };
 
@@ -106,15 +129,19 @@ const Generator = () => {
     }
   };
 
-  const startAiAnalyze = () => {
+  const handleQuestionClick = () => {
+    setIsModalOpen(true);
+  };
 
-  } 
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className='w-full h-full flex flex-col relative'>
-      <div className='w-full h-15 px-2 py-4  bg-indigo-400 text-[2.2rem] text-white font-bold'>Contract Generator</div>
-      <div className="w-full h-full flex">
-        <form onSubmit={handleSubmit} className='p-4 max-h-full overflow-y-scroll w-1/2'>
+      <Header />
+      <div className="w-full h-full flex flex-col lg:flex-row">
+        <form onSubmit={handleSubmit} className='p-4 max-h-full overflow-y-scroll w-full lg:w-1/2'>
           {Object.keys(initialJsonData).map((key) => (
             <>
               {key !== 'TABLE' && (
@@ -129,27 +156,50 @@ const Generator = () => {
                   />
                 </div>
               )}
-              {key === 'TABLE' && (
+              {key.includes('TABLE') && (
                 <div key={key} className='mb-4'>
-                  <label className='block text-gray-700 font-bold mb-1'>billed_items:</label>
+                  <div className="flex justify-between">
+                    <label className='block text-gray-700 font-bold mb-1'>Table Items:</label>
+                    <div className='mb-4 flex gap-3 items-center'>
+                      <label className='block text-gray-700 font-bold mb-1 lh-[1.2]'>Show Recommended Prices:</label>
+                      <input
+                        type='checkbox'
+                        checked={showRecommendedPrice}
+                        onChange={(e) => setShowRecommendedPrice(e.target.checked)}
+                        className='w-4 h-4 border border-gray-300 rounded'
+                      />
+                    </div>
+                  </div>
                   {formData.TABLE.insert_rows.map((row, rowIndex) => (
-                    <div key={rowIndex} className='flex items-center space-x-2 mt-1'>
-                      {row.map((item, colIndex) => (
-                        <input
-                          key={colIndex}
-                          type='text'
-                          value={item}
-                          onChange={(e) => handleBilledItemsChange(e, rowIndex, colIndex)}
-                          className='w-full border border-gray-300 p-2 rounded'
-                        />
-                      ))}
-                      <button
-                        type='button'
-                        className='bg-red-500 text-white px-2 py-1 rounded'
-                        onClick={() => handleRemoveRow(rowIndex)}
-                      >
-                        Remove
-                      </button>
+                    <div key={rowIndex} className='flex flex-col space-y-2 mt-1'>
+                      <div className='flex items-center space-x-2'>
+                        {row.map((item, colIndex) => (
+                          <input
+                            key={colIndex}
+                            type='text'
+                            value={item}
+                            onChange={(e) => handleBilledItemsChange(e, rowIndex, colIndex)}
+                            className='w-full border border-gray-300 p-2 rounded'
+                          />
+                        ))}
+                        <button
+                          type='button'
+                          className='bg-red-500 text-white px-2 py-1 rounded'
+                          onClick={() => handleRemoveRow(rowIndex)}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                      {showRecommendedPrice && (
+                        <div className='text-gray-700 items-center flex gap-2'>
+                          Recommended Price: <span className='font-bold'>$12.43</span>
+                          <FontAwesomeIcon
+                            icon={faQuestion}
+                            className='hover:scale-[1.10] hover:cursor-pointer'
+                            onClick={handleQuestionClick}
+                          />
+                        </div>
+                      )}
                     </div>
                   ))}
                   <button
@@ -165,10 +215,10 @@ const Generator = () => {
           ))}
           <button type='submit' className='bg-blue-500 text-white px-4 py-2 rounded'>Generate</button>
         </form>
-        <div className='webviewer w-1/2' ref={viewerRef}></div>
+        <div className='webviewer w-full lg:w-1/2' ref={viewerRef}></div>
       </div>
       <ChatWidget />
-      
+      <Modal show={isModalOpen} onClose={handleModalClose} />
     </div>
   );
 };

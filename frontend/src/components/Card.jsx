@@ -44,7 +44,7 @@ const Card = ({ image, name, rating, usages, comments: initialComments }) => {
                             ))}
                         </span>
                     </div>
-                    <div className='flex align-top gap-2 text-gray-700'>
+                    <div className='flex items-center gap-2 text-gray-700'>
                         <FontAwesomeIcon icon={faFileArrowDown} />
                         {usages}
                     </div>

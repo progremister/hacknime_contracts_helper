@@ -1,5 +1,6 @@
 import WebViewer from '@pdftron/webviewer';
 import { useEffect, useRef } from 'react';
+import Header from '../components/Header';
 
 const jsonData = {
     "NAZOV_ZAKAZKY_1": 'Kvetinače',
@@ -65,7 +66,7 @@ const DocumentPage = () => {
 
     return (
         <div className='w-full h-full flex flex-col'>
-            <div className='bg-blue-400 text-white p-4 text-xl font-bold'>Client App</div>
+            <Header />
             <div className='webviewer' ref={viewerRef}></div>
         </div>
     );

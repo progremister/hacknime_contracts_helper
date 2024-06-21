@@ -2,13 +2,15 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import { useEffect } from 'react';
 import Card from '../components/Card';
+import Header from '../components/Header';
 
 const SearchPage = () => {
     useEffect(() => {
         document.title = `${import.meta.env.VITE_APP_NAME} | Search Templates`;
     }, []);
 
-    return (
+    return (<div>
+        <Header />
         <div className='min-h-screen flex flex-col items-center p-4 bg-gray-100'>
             <div className='w-full mx-auto p-6 bg-white shadow-md rounded-md mt-2'>
                 <h1 className='text-2xl sm:text-4xl font-bold text-center text-gray-700'>
@@ -32,7 +34,7 @@ const SearchPage = () => {
                     </div>
                     <DropDown />
                 </div>
-                <div className='flex flex-wrap justify-between pb-20'>
+                <div className='flex flex-wrap justify-between pb-20 gap-6'>
                     {data.map((item) => (
                         <Card key={item.id} {...item} />
                     ))}
@@ -40,6 +42,7 @@ const SearchPage = () => {
                 <Example />
             </div>
         </div>
+    </div>
     );
 };
 
