@@ -1,46 +1,31 @@
-import { colors } from "./config";
-
 export const styles = {
     chatWidget: {
-        // Position
-        position: "fixed",
-        bottom: "20px",
-        right: "20px",
-        backgroundColor: colors.primary,
-        // Padding
-        paddingLeft: "18px",
-        paddingRight: "18px",
-        paddingTop: "7px",
-        paddingBottom: "7px",
-        // Border
-        borderRadius: "10px",
-        cursor: "pointer",
+        backgroundColor: 'rgb(129 140 248)',
+        borderRadius: '10px',
+        width: '150px',
+        padding: '10px 0',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+        position: 'fixed',
+        bottom: '20px',
+        right: '20px',
     },
-
     chatWidgetText: {
-        color: "white",
-        fontSize: "15px",
-        marginLeft: "5px",
+        marginLeft: '10px',
+        color: 'white',
+        fontWeight: 'bold',
     },
-
-    // Styling for model window 
     modalWindow: {
-        // Position
-        position: "fixed",
-        bottom: "70px",
-        right: "20px",
-        // Size
-        width: "370px",
-        // width: "420px",
-        maxWidth: "calc(100% - 48px)",
-        maxHeight: "calc(100% - 48px)",
-        backgroundColor: "white",
-        // Border
-        borderRadius: "12px",
-        border: `2px solid ${colors.primary}`,
-        overflow: "hidden",
-        // Shadow
-        boxShadow: "0px 0px 16px 6px rgba(0, 0, 0, 0.33)",
+        position: 'fixed',
+        width: '400px',
+        bottom: '20px',
+        right: '20px',
+        backgroundColor: 'white',
+        padding: '20px',
+        borderRadius: '10px',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+        transition: 'opacity 0.3s ease-in-out',
     },
-
-}
+};
