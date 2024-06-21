@@ -1,69 +1,59 @@
 // importing external style
-import { styles } from "./styles";
+import { styles } from './styles';
 // import icon
-import { BsFillChatFill } from "react-icons/bs";
-import { useEffect, useRef, useState } from "react";
+import { BsFillChatFill } from 'react-icons/bs';
+import { useEffect, useRef, useState } from 'react';
 //import ModalWindow
-import ModalWindow from "./ModalWindow/ModalWindow";
-
-
-
+import ModalWindow from './ModalWindow/ModalWindow';
 
 function ChatWidget() {
-    // state variable to track if widget button was hovered on
-    const [hovered, setHovered] = useState(false);
-    // state variable to track modal visibility
     const [visible, setVisible] = useState(false);
-    //creating a ref 'id'
+    const [loadingStep, setLoadingStep] = useState(0);
+    const [failureStep, setFailureStep] = useState(-1);
     const widgetRef = useRef(null);
-    // use effect listener to check if the mouse was cliked outside the window 
+
     useEffect(() => {
         function handleClickOutside(event) {
             if (widgetRef.current && !widgetRef.current.contains(event.target)) {
                 setVisible(false);
             }
         }
-        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener('mousedown', handleClickOutside);
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [widgetRef]);
 
+    const handleButtonClick = () => {
+        setVisible(true);
+        setLoadingStep(1);
+        const evenNumbers = [0, 2, 4];
+        const randomIndex = Math.floor(Math.random() * evenNumbers.length);
+        setFailureStep(evenNumbers[randomIndex]);
+    };
+
     return (
-        //container
-        //call widgetRef inside the div
         <div ref={widgetRef}>
-            {/* Call Modal Window */}
-            <ModalWindow visible={visible} />
+            <ModalWindow
+                visible={visible}
+                setVisible={setVisible}
+                loadingStep={loadingStep}
+                setLoadingStep={setLoadingStep}
+                failureStep={failureStep}
+            />
 
-            {/* Chat Button Component */}
-            <div
-                onClick={() => setVisible(!visible)}
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-                style={{
-                    ...styles.chatWidget,
-                    ...{ border: hovered ? "1px solid black" : "" },
-                }}
-            >
-                {/* Inner Container */}
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}
-                >
-                    {/* Button Icon */}
-                    <BsFillChatFill size={20} color="white" />
-
-                    {/* Button Text */}
-                    <span style={styles.chatWidgetText}>Check with AI!</span>
+            {!visible && (
+                <div onClick={handleButtonClick} style={styles.chatWidget}>
+                    <div
+                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                    >
+                        <BsFillChatFill size={20} color='white' />
+                        <span style={styles.chatWidgetText}>Check with AI!</span>
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }
-
 
 export default ChatWidget;

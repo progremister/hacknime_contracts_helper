@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { $api } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import googleIcon from '../assets/google_logo.png';
 
@@ -30,12 +29,10 @@ const RegisterPage = () => {
         }
 
         try {
-            // await $api.post('/api/user', userData);
             localStorage.setItem('email', email); // Adjust as needed
             navigate('/search'); // Redirect after successful registration
         } catch (error) {
             console.error('Error registering user:', error);
-            // Handle error (e.g., show error message)
         }
     };
 
