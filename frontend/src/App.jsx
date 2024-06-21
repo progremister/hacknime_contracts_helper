@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
-import DocumentPage from './pages/DocumentPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import SearchPage from './pages/SearchPage';
@@ -15,11 +14,10 @@ const App = () => {
         <Routes>
             <Route path='login' element={<LoginPage />} />
             <Route path='register' element={<RegisterPage />} />
-            <Route path='*' element={<NotFoundPage />} />
             <Route path='/' element={<Layout />}>
-                <Route path='/generator' element={<Generator />} />
-                <Route index element={<DocumentPage />} />
-                <Route path='search' element={<SearchPage />} />
+                <Route index element={<SearchPage />} />
+                <Route path='generator' element={<Generator />} />
+                {/* <Route path='document' element={<DocumentPage />} /> */}
             </Route>
             <Route path='*' element={<NotFoundPage />} />
         </Routes>
