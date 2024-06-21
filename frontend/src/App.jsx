@@ -19,7 +19,7 @@ const App = () => {
             <Route path='/' element={<Layout />}>
                 <Route path='/generator' element={<Generator />} />
                 <Route index element={<DocumentPage />} />
-                <Route path='search' element={<SearchPage />} />
+                <Route path='/search' element={<SearchPage />} />
             </Route>
             <Route path='*' element={<NotFoundPage />} />
         </Routes>

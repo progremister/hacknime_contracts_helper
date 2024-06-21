@@ -1,5 +1,6 @@
 import WebViewer from '@pdftron/webviewer';
 import { useEffect, useRef, useState } from 'react';
+import ChatWidget from '../components/ChatWidget/ChatWidget';
 
 const initialJsonData = {
   "NAZOV_ZAKAZKY_1": 'Kvetinače',
@@ -105,8 +106,12 @@ const Generator = () => {
     }
   };
 
+  const startAiAnalyze = () => {
+
+  } 
+
   return (
-    <div className='w-full h-full flex flex-col'>
+    <div className='w-full h-full flex flex-col relative'>
       <div className='w-full h-15 px-2 py-4  bg-indigo-400 text-[2.2rem] text-white font-bold'>Contract Generator</div>
       <div className="w-full h-full flex">
         <form onSubmit={handleSubmit} className='p-4 max-h-full overflow-y-scroll w-1/2'>
@@ -162,6 +167,8 @@ const Generator = () => {
         </form>
         <div className='webviewer w-1/2' ref={viewerRef}></div>
       </div>
+      <ChatWidget />
+      
     </div>
   );
 };
