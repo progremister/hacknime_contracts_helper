@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "@pdftron/webviewer": "^10.10.1",
+        "axios": "^1.7.2",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "react-router-dom": "^6.23.1"
