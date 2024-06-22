@@ -3,24 +3,39 @@ import { useEffect, useRef, useState } from 'react';
 import ChatWidget from '../components/ChatWidget/ChatWidget';
 import Header from '../components/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestion, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faQuestion, faTrash } from '@fortawesome/free-solid-svg-icons';
 import PriceRecommendModal from '../components/PriceRecommendModal';
 
 const initialJsonData = {
-  "NAZOV_ZAKAZKY_1": 'Kvetinače',
-  "OSOBA_1": 'Dmytro Kolosovskyi',
-  "MANAZER_VO": 'Dmytro Kolosovskyi',
+  "NAZOV_ZAKAZKY": 'Kvetinače',
+  "SKRATLA": "Kv.",
+  "ZDROJE_FINANCOVANIE": "urad",
+  "TYP_ZMLUVY": "zmluva",
+  "DEADLINE": "25.08.2025",
+  "TABLE_2": {
+    insert_rows: [
+        ["1", "Dokument 1", "1"],
+        ["2", "Dokument 2", "9"],
+        ["3", "Dokument 3", "21"],
+    ]
+  },
+  "TABLE_3": {
+    insert_rows: [
+      ["1", "Subdodavatel 1", "1234", "10%", "Predmet 1"],
+      ["2", "Subdodavatel 2", "1234", "10%", "Predmet 3"],
+      ["3", "Subdodavatel 3", "1234", "10%", "Predmet 5"],
+    ]
+  },
+  "OSOBA_1": 'Oleksandr Kalenskyy',
+  "MANAZER_VO": 'Kyrylo Bulyk',
   "OSOBA_2": 'Dmytro Kolosovskyi',
-  "DATUM_1": "22.06.2024",
-  "NAZOV_ZAKAZKY_2": 'Kvetinače',
-  "DATUM_2": "22.06.2024",
-  "ODKAZ_1": "https://www.google.com",
-  "ODKAZ_2": "https://www.google.com",
-  "NAZOV_ZAKAZKY_3": 'Kvetinače',
+  "DATUM": "22.06.2024",
+  "ODKAZ": "https://www.google.com",
   "CPV_1": "1",
   "CPV_2": "2",
-  "HODNOTA_1": "20",
-  "TRH_1": "trhu kvetinacov",
+  "HODNOTA": "20",
+  "POPIS": "pekny kvetinac",
+  "TRH": "trhu kvetinacov",
   "TABLE": {
     insert_rows: [
         ["Kventinac", "1", "1", "20%", "10", "20", "30", "40"],
@@ -28,8 +43,7 @@ const initialJsonData = {
     ]
   },
   "MESTO": "Bratislave",
-  "DATUM_3": "22.06.2024",
-  "MENO_PRIEZVISKO_1": "Dmytro Kolosovskyi"
+  "MENO_PRIEZVISKO": "Dmytro Kolosovskyi"
 };
 
 const Generator = () => {
@@ -39,66 +53,68 @@ const Generator = () => {
   const [showRecommendedPrice, setShowRecommendedPrice] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(() => {
-        const initializeWebViewer = async () => {
-            if (webViewerInstance.current) {
-                return;
-            }
+  useEffect(() => {
+    const initializeWebViewer = async () => {
+      if (webViewerInstance.current) {
+        return;
+      }
 
-            const instance = await WebViewer(
-                {
-                    path: '../node_modules/@pdftron/webviewer/public',
-                    initialDoc: '/files/example1.docx',
-                },
-                viewerRef.current
-            );
+      const instance = await WebViewer(
+        {
+          path: '../node_modules/@pdftron/webviewer/public',
+          initialDoc: '/files/example1.docx',
+        },
+        viewerRef.current
+      );
 
-            webViewerInstance.current = instance;
+      webViewerInstance.current = instance;
 
-            const { documentViewer } = instance.Core;
+      const { documentViewer } = instance.Core;
 
-            documentViewer.addEventListener('documentLoaded', async () => {
-                const doc = documentViewer.getDocument();
-                await doc.getDocumentCompletePromise();
-                documentViewer.updateView();
-            });
-        };
-
-        initializeWebViewer();
-    }, [formData]);
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
+      documentViewer.addEventListener('documentLoaded', async () => {
+        const doc = documentViewer.getDocument();
+        await doc.getDocumentCompletePromise();
+        documentViewer.updateView();
+      });
     };
 
-  const handleBilledItemsChange = (e, rowIndex, colIndex) => {
+    initializeWebViewer();
+  }, [formData]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleBilledItemsChange = (tableKey, e, rowIndex, colIndex) => {
     const value = e.target.value;
-    const updatedRows = formData.TABLE.insert_rows.map((row, rIndex) =>
+    const updatedRows = formData[tableKey].insert_rows.map((row, rIndex) =>
       rIndex === rowIndex ? row.map((col, cIndex) => (cIndex === colIndex ? value : col)) : row
     );
     setFormData((prevData) => ({
       ...prevData,
-      TABLE: { insert_rows: updatedRows },
+      [tableKey]: { insert_rows: updatedRows },
     }));
   };
 
-  const handleAddRow = () => {
-    const updatedRows = [...formData.TABLE.insert_rows, ['', '', '', '', '', '', '', '']];
+  const handleAddRow = (tableKey) => {
+    const numColumns = formData[tableKey].insert_rows[0].length;
+    const newRow = Array(numColumns).fill('');
+    const updatedRows = [...formData[tableKey].insert_rows, newRow];
     setFormData((prevData) => ({
       ...prevData,
-      TABLE: { insert_rows: updatedRows },
+      [tableKey]: { insert_rows: updatedRows },
     }));
   };
 
-  const handleRemoveRow = (rowIndex) => {
-    const updatedRows = formData.TABLE.insert_rows.filter((_, rIndex) => rIndex !== rowIndex);
+  const handleRemoveRow = (tableKey, rowIndex) => {
+    const updatedRows = formData[tableKey].insert_rows.filter((_, rIndex) => rIndex !== rowIndex);
     setFormData((prevData) => ({
       ...prevData,
-      TABLE: { insert_rows: updatedRows },
+      [tableKey]: { insert_rows: updatedRows },
     }));
   };
 
@@ -127,7 +143,7 @@ const Generator = () => {
         <form onSubmit={handleSubmit} className='p-4 max-h-full overflow-y-scroll w-full lg:w-1/2'>
           {Object.keys(initialJsonData).map((key) => (
             <>
-              {key !== 'TABLE' && (
+              {!key.includes('TABLE') && (
                 <div key={key} className='mb-4'>
                   <label className='block text-gray-700 font-bold mb-1'>{key}:</label>
                   <input
@@ -141,8 +157,8 @@ const Generator = () => {
               )}
               {key.includes('TABLE') && (
                 <div key={key} className='mb-4'>
-                  <div className="flex justify-between">
-                    <label className='block text-gray-700 font-bold mb-1'>Položky tabuľky:</label>
+                  <div className="flex justify-between items-center">
+                    <label className='block text-gray-700 font-bold'>{key}:</label>
                     <div className='mb-4 flex gap-3 items-center'>
                       <label className='block text-gray-700 font-bold mb-1 lh-[1.2]'>AI odporúčané ceny:</label>
                       <input
@@ -153,7 +169,7 @@ const Generator = () => {
                       />
                     </div>
                   </div>
-                  {formData.TABLE.insert_rows.map((row, rowIndex) => (
+                  {formData[key].insert_rows.map((row, rowIndex) => (
                     <div key={rowIndex} className='flex flex-col space-y-2 mt-1'>
                       <div className='flex items-center space-x-2'>
                         {row.map((item, colIndex) => (
@@ -161,16 +177,16 @@ const Generator = () => {
                             key={colIndex}
                             type='text'
                             value={item}
-                            onChange={(e) => handleBilledItemsChange(e, rowIndex, colIndex)}
+                            onChange={(e) => handleBilledItemsChange(key, e, rowIndex, colIndex)}
                             className='w-full border border-gray-300 p-2 rounded'
                           />
                         ))}
                         <button
                           type='button'
-                          className='bg-red-500 text-white px-2 py-1 rounded'
-                          onClick={() => handleRemoveRow(rowIndex)}
+                          className='bg-red-400 text-white px-2 py-1 rounded'
+                          onClick={() => handleRemoveRow(key, rowIndex)}
                         >
-                          Odstrániť
+                          <FontAwesomeIcon icon={faTrash} />
                         </button>
                       </div>
                       {showRecommendedPrice && (
@@ -188,7 +204,7 @@ const Generator = () => {
                   <button
                     type='button'
                     className='bg-green-500 text-white px-2 py-1 mt-2 rounded'
-                    onClick={handleAddRow}
+                    onClick={() => handleAddRow(key)}
                   >
                     Pridať riadok
                   </button>
