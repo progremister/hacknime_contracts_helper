@@ -6,13 +6,13 @@ PodkladniSk is a powerful application designed to revolutionize the management o
 
 ## Website 🌐
 
-[Visit our website](https://podklady-sk.netlify.app/)
+[Podkladni.sk](https://podklady-sk.netlify.app/)
 
 ## Screenshots 📸
 
 ### Registration 📝
 
-![Registration Screen](link-to-registration-screenshot)
+![Registration Screen](photos/registration.png)
 **Description**: The registration screen allows new users to create an account with ease, ensuring secure access to all features of PodkladniSk.
 
 ### Home Page 🏠
