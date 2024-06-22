@@ -13,9 +13,19 @@ const SearchPage = () => {
     }, []);
 
     useEffect(() => {
-        const lowercasedFilter = searchValue.toLowerCase();
+        const lowercasedFilter = searchValue.toLowerCase()
+            .trim()
+            .replace(/^-+|-+$/g, "")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
+
         const filteredData = data.filter(item =>
-            item.name.toLowerCase().includes(lowercasedFilter)
+            item.name.toLowerCase()
+                .trim()
+                .replace(/^-+|-+$/g, "")
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .includes(lowercasedFilter)
         );
         setFilteredData(filteredData);
     }, [searchValue]);
