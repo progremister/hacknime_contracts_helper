@@ -6,8 +6,8 @@ import { styles } from '../styles';
 
 const messages = [
     'Nahrávanie dokumentu...',
-    'Analyzovanie dokumentu...',
-    'Analyzovanie dokončené',
+    'Analyza dokumentu...',
+    'Analyza dokončená',
     'Kontrola zhody...',
     'Kontrola zhody dokončená',
     'Dokončovanie kontroly dokumentu...',

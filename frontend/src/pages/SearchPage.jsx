@@ -192,7 +192,7 @@ export function DropDown() {
                                     'block px-4 py-2 text-sm'
                                 )}
                             >
-                                Nastavenia účtu
+                                Stiahnutia
                             </a>
                         )}
                     </MenuItem>
@@ -205,7 +205,7 @@ export function DropDown() {
                                     'block px-4 py-2 text-sm'
                                 )}
                             >
-                                Podpora
+                                Aktualita
                             </a>
                         )}
                     </MenuItem>
@@ -218,25 +218,10 @@ export function DropDown() {
                                     'block px-4 py-2 text-sm'
                                 )}
                             >
-                                Licencia
+                                Hodnotenie
                             </a>
                         )}
                     </MenuItem>
-                    <form method='POST' action='#'>
-                        <MenuItem>
-                            {({ focus }) => (
-                                <button
-                                    type='submit'
-                                    className={classNames(
-                                        focus ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                        'block w-full px-4 py-2 text-left text-sm'
-                                    )}
-                                >
-                                    Odhlásiť sa
-                                </button>
-                            )}
-                        </MenuItem>
-                    </form>
                 </div>
             </MenuItems>
         </Menu>

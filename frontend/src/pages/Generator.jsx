@@ -210,7 +210,7 @@ const Generator = () => {
                     className='bg-blue-400 text-white px-2 py-1 mt-2 rounded hover:bg-blue-600'
                     onClick={() => handleAddRow(key)}
                   >
-                    Pridať riadok
+                    Prídať riadok
                   </button>
                 </div>
               )}

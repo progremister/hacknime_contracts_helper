@@ -60,7 +60,7 @@ const Card = ({ image, name, rating, usages, comments: initialComments, isVerifi
                     className='w-full mt-4 bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 rounded-md hover:bg-indigo-00'
                     onClick={() => setShowComments(!showComments)}
                 >
-                    {showComments ? 'Hide Comments' : 'Show Comments'}
+                    {showComments ? 'Storno' : 'Úkaž komentáre'}
                 </button>
                 {showComments && (
                     <div className='mt-4'>
@@ -74,16 +74,16 @@ const Card = ({ image, name, rating, usages, comments: initialComments, isVerifi
                         <div className='mt-4'>
                             <input
                                 type='text'
-                                placeholder='Add a comment...'
+                                placeholder='Váš komentár...'
                                 value={newComment}
                                 onChange={(e) => setNewComment(e.target.value)}
-                                className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:bg-indigo-400'
+                                className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-black'
                             />
                             <button
                                 className='w-full mt-2 bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600'
                                 onClick={handleAddComment}
                             >
-                                Submit Comment
+                                Prídať komentár
                             </button>
                         </div>
                     </div>
