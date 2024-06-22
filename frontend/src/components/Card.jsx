@@ -24,13 +24,13 @@ const Card = ({ image, name, rating, usages, comments: initialComments, isVerifi
             <div className='p-4'>
                 <div className='flex justify-between items-center'>
                     <h2
-                        className='text-lg font-semibold text-gray-800 hover:underline cursor-pointer'
+                        className='text-lg font-semibold text-gray-800 hover:underline cursor-pointer h-[52px]'
                         onClick={() => navigate('/generator')}
                     >
                         {name}
                     </h2>
                     {isVerified && (
-                        <span className='bg-blue-400 ml-3 text-white text-xs px-2 py-1 rounded-full'>
+                        <span className='bg-blue-900 ml-3 text-white text-xs px-2 py-1 rounded-full'>
                             Aktualný
                         </span>
                     )}
@@ -57,7 +57,7 @@ const Card = ({ image, name, rating, usages, comments: initialComments, isVerifi
                     </div>
                 </div>
                 <button
-                    className='w-full mt-4 bg-indigo-400 text-white py-2 px-4 rounded-md hover:bg-indigo-00'
+                    className='w-full mt-4 bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 rounded-md hover:bg-indigo-00'
                     onClick={() => setShowComments(!showComments)}
                 >
                     {showComments ? 'Hide Comments' : 'Show Comments'}

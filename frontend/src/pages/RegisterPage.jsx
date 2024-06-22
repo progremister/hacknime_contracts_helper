@@ -24,7 +24,7 @@ const RegisterPage = () => {
         const { email, password } = userData;
 
         if (!email.trim() || !password.trim()) {
-            alert('Invalid email or password');
+            alert('Neplatný email alebo heslo');
             return;
         }
 
@@ -32,12 +32,12 @@ const RegisterPage = () => {
             localStorage.setItem('email', email); // Adjust as needed
             navigate('/search'); // Redirect after successful registration
         } catch (error) {
-            console.error('Error registering user:', error);
+            console.error('Chyba pri registrácii používateľa:', error);
         }
     };
 
     useEffect(() => {
-        document.title = `${import.meta.env.VITE_APP_NAME} | Register`;
+        document.title = `${import.meta.env.VITE_APP_NAME} | Registrácia`;
     }, []);
 
     return (
@@ -55,7 +55,7 @@ const RegisterPage = () => {
                             htmlFor='fullName'
                             className='block text-gray-700 font-semibold mb-2'
                         >
-                            Full Name
+                            Meno a Priezvisko
                         </label>
                         <input
                             value={userData.fullName}
@@ -65,8 +65,8 @@ const RegisterPage = () => {
                             type='text'
                             autoComplete='name'
                             required
-                            placeholder='Your full name'
-                            className='text-gray-700 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500'
+                            placeholder='Vaše meno a priezvisko'
+                            className='text-gray-700 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-black'
                         />
                     </div>
                     <div className='mb-4'>
@@ -81,8 +81,8 @@ const RegisterPage = () => {
                             type='email'
                             autoComplete='email'
                             required
-                            placeholder='Your email address'
-                            className='text-gray-700 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500'
+                            placeholder='Vaša emailová adresa'
+                            className='text-gray-700 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-black'
                         />
                     </div>
                     <div className='mb-4'>
@@ -90,7 +90,7 @@ const RegisterPage = () => {
                             htmlFor='password'
                             className='block text-gray-700 font-semibold mb-2'
                         >
-                            Password
+                            Heslo
                         </label>
                         <input
                             value={userData.password}
@@ -100,8 +100,8 @@ const RegisterPage = () => {
                             type='password'
                             autoComplete='new-password'
                             required
-                            placeholder='Your password'
-                            className='text-gray-700 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500'
+                            placeholder='Vaše heslo'
+                            className='text-gray-700 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-black'
                         />
                     </div>
                     <div className='mb-4'>
@@ -109,7 +109,7 @@ const RegisterPage = () => {
                             htmlFor='organisation'
                             className='block text-gray-700 font-semibold mb-2'
                         >
-                            Organisation
+                            Spoločnosť
                         </label>
                         <input
                             value={userData.organisation}
@@ -119,22 +119,22 @@ const RegisterPage = () => {
                             type='text'
                             autoComplete='organization'
                             required
-                            placeholder='Your organisation'
-                            className='text-gray-700 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500'
+                            placeholder='Vaša spoločnosť'
+                            className='text-gray-700 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-black'
                         />
                     </div>
                     <button
                         type='submit'
                         className='w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600'
                     >
-                        Register
+                        Registrovať sa
                     </button>
                     <button
-                        type='submit'
-                        className='w-full bg-purple-400 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600 flex items-center justify-center gap-4 duration-100 mt-3'
+                        type='button'
+                        className='w-full bg-blue-800 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-900 focus:outline-none focus:bg-blue-900 flex items-center justify-center gap-4 duration-100 mt-3'
                     >
-                        <img src={googleIcon} alt='' className='max-w-5 max-h-5' />
-                        <span>Create account with Google</span>
+                        <img src={googleIcon} alt='Google logo' className='max-w-5 max-h-5' />
+                        <span>Vytvorenie konta s Google</span>
                     </button>
                 </form>
             </div>

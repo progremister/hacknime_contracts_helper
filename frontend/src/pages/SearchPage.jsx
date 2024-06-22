@@ -28,7 +28,7 @@ const SearchPage = () => {
                     <h1 className='text-2xl sm:text-4xl font-bold text-center text-gray-700'>
                         Hľadať štandardy
                     </h1>
-                    <div className='flex justify-between pt-20 pb-5 w-full gap-10'>
+                    <div className='flex justify-between pt-15 p-5 w-full gap-10'>
                         <div className='flex gap-3 w-full'>
                             <input
                                 id='search'
@@ -37,11 +37,11 @@ const SearchPage = () => {
                                 placeholder='Hľadať šablóny ...'
                                 value={searchValue}
                                 onChange={(e) => setSearchValue(e.target.value)}
-                                className='text-gray-700 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500'
+                                className='text-gray-700 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-600'
                             />
                             <button
                                 type='submit'
-                                className='max-w-44 bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600'
+                                className='max-w-44 bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-800 focus:outline-none focus:bg-blue-800'
                             >
                                 Hľadať
                             </button>

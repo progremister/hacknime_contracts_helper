@@ -13,7 +13,7 @@ export default function ProfileDropdown() {
           <button className="flex justify-normal items-center">
             <div
               id="circle-avatar"
-              className="text-center mx-auto grid w-14 h-14 rounded-full bg-blue-600 place-items-center"
+              className="text-center mx-auto grid w-14 h-14 rounded-full bg-blue-800 place-items-center"
             >
               <span className="text-4xl font-bold">T</span>
             </div>
@@ -23,7 +23,7 @@ export default function ProfileDropdown() {
             <div className="card-body p-4">
               <div
                 id="circle-avatar"
-                className="text-center mx-auto mb-4 grid w-24 h-24 rounded-full bg-blue-600 place-items-center text-white"
+                className="text-center mx-auto mb-4 grid w-24 h-24 rounded-full bg-blue-800 place-items-center text-white"
               >
                 <span className="text-6xl font-bold">T</span>
               </div>

@@ -142,112 +142,88 @@ const Generator = () => {
 
     return (
         <div className='w-full h-full flex flex-col relative'>
-            <Header />
-            <div className='w-full h-full lg:flex lg:flex-row'>
-                <form
-                    onSubmit={handleSubmit}
-                    className='p-4 max-h-full overflow-y-scroll w-full lg:w-1/2'
-                >
-                    {Object.keys(initialJsonData).map((key) => (
-                        <>
-                            {!key.includes('TABLE') && (
-                                <div key={key} className='mb-4'>
-                                    <label className='block text-gray-700 font-bold mb-1'>
-                                        {key}:
-                                    </label>
-                                    <input
-                                        type='text'
-                                        name={key}
-                                        value={formData[key]}
-                                        onChange={handleChange}
-                                        className='w-full border border-gray-300 p-2 mt-1 rounded'
-                                    />
-                                </div>
-                            )}
-                            {key.includes('TABLE') && (
-                                <div key={key} className='mb-4'>
-                                    <div className='flex justify-between items-center'>
-                                        <label className='block text-gray-700 font-bold'>
-                                            {key}:
-                                        </label>
-                                        <div className='mb-4 flex gap-3 items-center'>
-                                            <label className='block text-gray-700 font-bold mb-1 lh-[1.2]'>
-                                                AI odporúčané ceny:
-                                            </label>
-                                            <input
-                                                type='checkbox'
-                                                checked={showRecommendedPrice}
-                                                onChange={(e) =>
-                                                    setShowRecommendedPrice(e.target.checked)
-                                                }
-                                                className='w-4 h-4 border border-gray-300 rounded'
-                                            />
-                                        </div>
-                                    </div>
-                                    {formData[key].insert_rows.map((row, rowIndex) => (
-                                        <div
-                                            key={rowIndex}
-                                            className='flex flex-col space-y-2 mt-1'
-                                        >
-                                            <div className='flex items-center space-x-2'>
-                                                {row.map((item, colIndex) => (
-                                                    <input
-                                                        key={colIndex}
-                                                        type='text'
-                                                        value={item}
-                                                        onChange={(e) =>
-                                                            handleBilledItemsChange(
-                                                                key,
-                                                                e,
-                                                                rowIndex,
-                                                                colIndex
-                                                            )
-                                                        }
-                                                        className='w-full border border-gray-300 p-2 rounded'
-                                                    />
-                                                ))}
-                                                <button
-                                                    type='button'
-                                                    className='bg-red-400 text-white px-2 py-1 rounded'
-                                                    onClick={() => handleRemoveRow(key, rowIndex)}
-                                                >
-                                                    <FontAwesomeIcon icon={faTrash} />
-                                                </button>
-                                            </div>
-                                            {showRecommendedPrice && (
-                                                <div className='text-gray-700 items-center flex gap-1'>
-                                                    Odporúčaná cena:
-                                                    <div
-                                                        className='flex hover:scale-[1.10] hover:cursor-pointer gap-1 items-center'
-                                                        onClick={handleQuestionClick}
-                                                    >
-                                                        <span className='font-bold'>11.98€</span>
-                                                        <FontAwesomeIcon icon={faQuestion} />
-                                                    </div>
-                                                </div>
-                                            )}
-                                        </div>
-                                    ))}
-                                    <button
-                                        type='button'
-                                        className='bg-green-500 text-white px-2 py-1 mt-2 rounded'
-                                        onClick={() => handleAddRow(key)}
-                                    >
-                                        Pridať riadok
-                                    </button>
-                                </div>
-                            )}
-                        </>
-                    ))}
-                    <button type='submit' className='bg-blue-500 text-white px-4 py-2 rounded'>
-                        Generovať
-                    </button>
-                </form>
-                <div className='webviewer w-full lg:w-1/2' ref={viewerRef}></div>
-            </div>
-            <ChatWidget />
-            <PriceRecommendModal show={isModalOpen} onClose={handleModalClose} />
-        </div>
+        <Header />
+        <div className='w-full h-full lg:flex lg:flex-row'>
+        <form onSubmit={handleSubmit} className='p-4 max-h-full overflow-y-scroll w-full lg:w-1/2'>
+          {Object.keys(initialJsonData).map((key) => (
+            <>
+              {!key.includes('TABLE') && (
+                <div key={key} className='mb-4'>
+                  <label className='block text-gray-700 font-bold mb-1'>{key}:</label>
+                  <input
+                    type='text'
+                    name={key}
+                    value={formData[key]}
+                    onChange={handleChange}
+                    className='w-full border border-gray-300 p-2 mt-1 rounded'
+                  />
+                </div>
+              )}
+              {key.includes('TABLE') && (
+                <div key={key} className='mb-4'>
+                  <div className="flex justify-between items-center">
+                    <label className='block text-gray-700 font-bold'>{key}:</label>
+                    <div className='mb-4 flex gap-3 items-center'>
+                      <label className='block text-gray-700 font-bold mb-1 lh-[1.2]'>AI odporúčané ceny:</label>
+                      <input
+                        type='checkbox'
+                        checked={showRecommendedPrice}
+                        onChange={(e) => setShowRecommendedPrice(e.target.checked)}
+                        className='w-4 h-4 border border-gray-300 rounded'
+                      />
+                    </div>
+                  </div>
+                  {formData[key].insert_rows.map((row, rowIndex) => (
+                    <div key={rowIndex} className='flex flex-col space-y-2 mt-1'>
+                      <div className='flex items-center space-x-2'>
+                        {row.map((item, colIndex) => (
+                          <input
+                            key={colIndex}
+                            type='text'
+                            value={item}
+                            onChange={(e) => handleBilledItemsChange(key, e, rowIndex, colIndex)}
+                            className='w-full border border-gray-300 p-2 rounded'
+                          />
+                        ))}
+                        <button
+                          type='button'
+                          className='text-blue-400 hover:text-blue-600 px-2 py-1 rounded'
+                          onClick={() => handleRemoveRow(key, rowIndex)}
+                        >
+                          <FontAwesomeIcon icon={faTrash} />
+                        </button>
+                      </div>
+                      {showRecommendedPrice && (
+                        <div className='text-gray-700 items-center flex gap-1'>
+                          Odporúčaná cena: 
+                          <div className='flex hover:scale-[1.10] hover:cursor-pointer gap-1 items-center'
+                            onClick={handleQuestionClick}>
+                                <span className='font-bold'>11.98€</span>
+                                <FontAwesomeIcon icon={faQuestion} />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                  <button
+                    type='button'
+                    className='bg-blue-400 text-white px-2 py-1 mt-2 rounded hover:bg-blue-600'
+                    onClick={() => handleAddRow(key)}
+                  >
+                    Pridať riadok
+                  </button>
+                </div>
+              )}
+            </>
+          ))}
+          <button type='submit' className='bg-blue-600 hover:bg-blue-800 text-white px-4 py-2 rounded'>Generovať</button>
+        </form>
+        <div className='webviewer w-full lg:w-1/2' ref={viewerRef}></div>
+      </div>
+      <ChatWidget />
+      <PriceRecommendModal show={isModalOpen} onClose={handleModalClose} />
+    </div>
+
     );
 };
 

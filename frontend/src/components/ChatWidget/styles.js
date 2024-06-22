@@ -1,6 +1,6 @@
 export const styles = {
     chatWidget: {
-        backgroundColor: 'rgb(129 140 248)',
+        backgroundColor: 'rgb(77 145 255)',
         borderRadius: '10px',
         width: '150px',
         padding: '10px 0',
