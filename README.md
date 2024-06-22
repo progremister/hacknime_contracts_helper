@@ -12,7 +12,7 @@ PodkladniSk is a powerful application designed to revolutionize the management o
 
 ### Registration 📝
 
-<img src="photos/registration.png" alt="Registration Screen" width="300"/>
+<img src="photos/registration.png" alt="Registration Screen" width="400"/>
 **Description**: The registration screen allows new users to create an account with ease, ensuring secure access to all features of PodkladniSk.
 
 ### Home Page 🏠
