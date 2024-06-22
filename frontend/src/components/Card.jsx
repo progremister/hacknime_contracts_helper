@@ -20,7 +20,7 @@ const Card = ({ image, name, rating, usages, comments: initialComments, isVerifi
 
     return (
         <div className={`bg-white shadow-md rounded-lg overflow-hidden max-w-96 w-full ${isVerified && 'border-3 border-blue-400' } relative`}>
-            <img src={image} alt={name} className='w-full h-40 object-cover object-center' />
+            <img src={image} alt={name} onClick={() => navigate('/generator')} className='w-full h-40 object-cover object-center' />
             <div className='p-4'>
                 <div className='flex justify-between items-center'>
                     <h2
