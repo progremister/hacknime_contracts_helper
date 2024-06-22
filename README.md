@@ -46,8 +46,6 @@ The main page contains various copies of contracts and tenders, as well as the a
 
 Our application also has possible integrations with other applications. We have an established API for receiving updated templates and retrieving saved documents
 
-### API Screenshots 📊
-
 <img src="photos/api-integration.jpg" alt="Registration Screen" width="500"/>
 
 **Data that can be obtained from the API**
