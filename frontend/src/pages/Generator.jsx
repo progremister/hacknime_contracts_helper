@@ -212,7 +212,7 @@ const Generator = () => {
               )}
             </>
           ))}
-          <button type='submit' className='bg-blue-500 text-white px-4 py-2 rounded'>Generovať</button>
+          <button type='submit' className='bg-indigo-500 text-white px-4 py-2 rounded'>Generovať</button>
         </form>
         <div className='webviewer w-full lg:w-1/2' ref={viewerRef}></div>
       </div>

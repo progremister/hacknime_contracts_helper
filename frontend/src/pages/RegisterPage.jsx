@@ -45,7 +45,6 @@ const RegisterPage = () => {
             <div className='max-w-xl w-full mx-auto p-6 bg-white shadow-md rounded-lg mt-2 flex flex-col justify-center'>
                 <div
                     className='flex items-center gap-2 hover:cursor-pointer text-2xl sm:text-4xl font-bold text-center text-gray-700 m-auto'
-                    onClick={() => navigate('/search', { replace: true })}
                 >
                     <img src="./assets/logo.png" alt="logo" className='w-16 h-16'/>
                     <div className='font-bold'>Podklady.sk</div>

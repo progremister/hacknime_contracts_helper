@@ -243,7 +243,8 @@ const data = [
         comments: [
             { username: 'Podkladnik 1', text: 'Skvelá šablóna, veľmi užitočná!' },
             { username: 'Podkladnik 2', text: 'Veľmi mi to pomohlo s projektom.' }
-        ]
+        ],
+        isVerified: true
     },
     {
         id: 2,
@@ -254,7 +255,8 @@ const data = [
         comments: [
             { username: 'Podkladnik 3', text: 'Dobré, ale mohlo by to byť vylepšené.' },
             { username: 'Podkladnik 4', text: 'Bolo to pre moje potreby ok.' }
-        ]
+        ],
+        isVerified: true
     },
     {
         id: 3,
@@ -265,7 +267,8 @@ const data = [
         comments: [
             { username: 'Podkladnik 5', text: 'Veľmi podrobné a užitočné.' },
             { username: 'Podkladnik 4', text: 'Uľahčilo mi to prácu.' }
-        ]
+        ],
+        isVerified: true
     },
     {
         id: 4,
@@ -276,7 +279,8 @@ const data = [
         comments: [
             { username: 'Podkladnik 7', text: 'Dobrá šablóna, jednoduchá na použitie.' },
             { username: 'Podkladnik 8', text: 'Splnilo moje očakávania.' }
-        ]
+        ],
+        isVerified: false
     },
     {
         id: 5,
@@ -287,7 +291,8 @@ const data = [
         comments: [
             { username: 'Podkladnik 9', text: 'Veľmi užitočné pre vzdelávacie účely.' },
             { username: 'Podkladnik 10', text: 'Veľmi mi to pomohlo v mojom projekte.' }
-        ]
+        ],
+        isVerified: false
     },
     {
         id: 6,
@@ -298,7 +303,8 @@ const data = [
         comments: [
             { username: 'Podkladnik 11', text: 'Vynikajúca šablóna pre stavebné projekty.' },
             { username: 'Podkladnik 12', text: 'Veľmi podrobné a komplexné.' }
-        ]
+        ],
+        isVerified: true
     },
     {
         id: 7,
@@ -309,7 +315,8 @@ const data = [
         comments: [
             { username: 'Podkladnik 13', text: 'Perfektné pre IT projekty.' },
             { username: 'Podkladnik 14', text: 'Vysoko odporúčané pre tech projekty.' }
-        ]
+        ],
+        isVerified: true
     },
     {
         id: 8,
@@ -320,6 +327,7 @@ const data = [
         comments: [
             { username: 'Podkladnik 15', text: 'Skvelé pre environmentálne iniciatívy.' },
             { username: 'Podkladnik 16', text: 'Veľmi užitočné a podrobné.' }
-        ]
+        ],
+        isVerified: false
     }
 ];
