@@ -61,7 +61,7 @@ const Generator = () => {
 
             const instance = await WebViewer(
                 {
-                    path: '../node_modules/@pdftron/webviewer/public',
+                    path: import.meta.env.VITE_MODE === "dev" ? '../node_modules/@pdftron/webviewer/public' : "./webviewer",
                     initialDoc: '/files/example1.docx',
                 },
                 viewerRef.current
