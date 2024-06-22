@@ -1,48 +1,62 @@
+import React, { useState, useEffect } from 'react';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
-import { useEffect } from 'react';
 import Card from '../components/Card';
 import Header from '../components/Header';
 
 const SearchPage = () => {
+    const [searchValue, setSearchValue] = useState('');
+    const [filteredData, setFilteredData] = useState(data);
+
     useEffect(() => {
-        document.title = `${import.meta.env.VITE_APP_NAME} | Search Templates`;
+        document.title = `${import.meta.env.VITE_APP_NAME} | Hľadať štandardy`;
     }, []);
 
-    return (<div>
-        <Header />
-        <div className='min-h-screen flex flex-col items-center p-4 bg-gray-100'>
-            <div className='w-full mx-auto p-6 bg-white shadow-md rounded-md mt-2'>
-                <h1 className='text-2xl sm:text-4xl font-bold text-center text-gray-700'>
-                    Search Templates
-                </h1>
-                <div className='flex justify-between pt-20 pb-5 w-full gap-10'>
-                    <div className='flex gap-3 w-full'>
-                        <input
-                            id='search'
-                            name='search'
-                            type='text'
-                            placeholder='Search templates ...'
-                            className='text-gray-700 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500'
-                        />
-                        <button
-                            type='submit'
-                            className='max-w-44 bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600'
-                        >
-                            Search
-                        </button>
+    useEffect(() => {
+        const lowercasedFilter = searchValue.toLowerCase();
+        const filteredData = data.filter(item =>
+            item.name.toLowerCase().includes(lowercasedFilter)
+        );
+        setFilteredData(filteredData);
+    }, [searchValue]);
+
+    return (
+        <div>
+            <Header />
+            <div className='min-h-screen flex flex-col items-center p-4 bg-gray-100'>
+                <div className='w-full mx-auto p-6 bg-white shadow-md rounded-md mt-2'>
+                    <h1 className='text-2xl sm:text-4xl font-bold text-center text-gray-700'>
+                        Hľadať štandardy
+                    </h1>
+                    <div className='flex justify-between pt-20 pb-5 w-full gap-10'>
+                        <div className='flex gap-3 w-full'>
+                            <input
+                                id='search'
+                                name='search'
+                                type='text'
+                                placeholder='Hľadať šablóny ...'
+                                value={searchValue}
+                                onChange={(e) => setSearchValue(e.target.value)}
+                                className='text-gray-700 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500'
+                            />
+                            <button
+                                type='submit'
+                                className='max-w-44 bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600'
+                            >
+                                Hľadať
+                            </button>
+                        </div>
+                        <DropDown />
                     </div>
-                    <DropDown />
+                    <div className='flex flex-wrap justify-center pb-20 gap-6'>
+                        {filteredData.map((item) => (
+                            <Card key={item.id} {...item} />
+                        ))}
+                    </div>
+                    <Example />
                 </div>
-                <div className='flex flex-wrap justify-between pb-20 gap-6'>
-                    {data.map((item) => (
-                        <Card key={item.id} {...item} />
-                    ))}
-                </div>
-                <Example />
             </div>
         </div>
-    </div>
     );
 };
 
@@ -56,21 +70,21 @@ export function Example() {
                     href='#'
                     className='relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50'
                 >
-                    Previous
+                    Predošlé
                 </a>
                 <a
                     href='#'
                     className='relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50'
                 >
-                    Next
+                    Ďalšie
                 </a>
             </div>
             <div className='hidden sm:flex sm:flex-1 sm:items-center sm:justify-between'>
                 <div>
                     <p className='text-sm text-gray-700'>
-                        Showing <span className='font-medium'>1</span> to{' '}
-                        <span className='font-medium'>10</span> of{' '}
-                        <span className='font-medium'>97</span> results
+                        Zobrazuje sa <span className='font-medium'>1</span> až{' '}
+                        <span className='font-medium'>10</span> z{' '}
+                        <span className='font-medium'>97</span> výsledkov
                     </p>
                 </div>
                 <div>
@@ -82,7 +96,7 @@ export function Example() {
                             href='#'
                             className='relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0'
                         >
-                            <span className='sr-only'>Previous</span>
+                            <span className='sr-only'>Predošlé</span>
                             <ChevronLeftIcon className='h-5 w-5' aria-hidden='true' />
                         </a>
                         {/* Current: "z-10 bg-blue-500 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
@@ -130,7 +144,7 @@ export function Example() {
                             href='#'
                             className='relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0'
                         >
-                            <span className='sr-only'>Next</span>
+                            <span className='sr-only'>Ďalšie</span>
                             <ChevronRightIcon className='h-5 w-5' aria-hidden='true' />
                         </a>
                     </nav>
@@ -168,7 +182,7 @@ export function DropDown() {
                                     'block px-4 py-2 text-sm'
                                 )}
                             >
-                                Account settings
+                                Nastavenia účtu
                             </a>
                         )}
                     </MenuItem>
@@ -181,7 +195,7 @@ export function DropDown() {
                                     'block px-4 py-2 text-sm'
                                 )}
                             >
-                                Support
+                                Podpora
                             </a>
                         )}
                     </MenuItem>
@@ -194,7 +208,7 @@ export function DropDown() {
                                     'block px-4 py-2 text-sm'
                                 )}
                             >
-                                License
+                                Licencia
                             </a>
                         )}
                     </MenuItem>
@@ -208,7 +222,7 @@ export function DropDown() {
                                         'block w-full px-4 py-2 text-left text-sm'
                                     )}
                                 >
-                                    Sign out
+                                    Odhlásiť sa
                                 </button>
                             )}
                         </MenuItem>
@@ -223,45 +237,89 @@ const data = [
     {
         id: 1,
         image: '../assets/contract-1.png',
-        name: 'Súťažné podklady pre zdravotnictvo',
+        name: 'Súťažné podklady pre zdravotníctvo',
         rating: 4.5,
         usages: 1242,
         comments: [
-            { username: 'user1', text: 'Great template, very useful!' },
-            { username: 'user2', text: 'Helped a lot with my project.' }
+            { username: 'Podkladnik 1', text: 'Skvelá šablóna, veľmi užitočná!' },
+            { username: 'Podkladnik 2', text: 'Veľmi mi to pomohlo s projektom.' }
         ]
     },
     {
         id: 2,
         image: 'https://via.placeholder.com/300',
-        name: 'Súťažné podklady pre nehnutelnost',
+        name: 'Súťažné podklady pre nehnuteľnosti',
         rating: 3.7,
         usages: 343,
         comments: [
-            { username: 'user3', text: 'Good, but could use some improvements.' },
-            { username: 'user4', text: 'Was okay for my needs.' }
+            { username: 'Podkladnik 3', text: 'Dobré, ale mohlo by to byť vylepšené.' },
+            { username: 'Podkladnik 4', text: 'Bolo to pre moje potreby ok.' }
         ]
     },
     {
         id: 3,
         image: 'https://via.placeholder.com/300',
-        name: 'Súťažné podklady pre verejnu dopravu',
+        name: 'Súťažné podklady pre verejnú dopravu',
         rating: 4.0,
         usages: 423,
         comments: [
-            { username: 'user5', text: 'Very detailed and helpful.' },
-            { username: 'user6', text: 'Made my job a lot easier.' }
+            { username: 'Podkladnik 5', text: 'Veľmi podrobné a užitočné.' },
+            { username: 'Podkladnik 4', text: 'Uľahčilo mi to prácu.' }
         ]
     },
     {
         id: 4,
         image: 'https://via.placeholder.com/300',
-        name: 'Súťažné podklady pre verejnu technicke zariadenia',
+        name: 'Súťažné podklady pre verejné technické zariadenia',
         rating: 3.8,
         usages: 423,
         comments: [
-            { username: 'user7', text: 'Good template, easy to use.' },
-            { username: 'user8', text: 'Met my expectations.' }
+            { username: 'Podkladnik 7', text: 'Dobrá šablóna, jednoduchá na použitie.' },
+            { username: 'Podkladnik 8', text: 'Splnilo moje očakávania.' }
+        ]
+    },
+    {
+        id: 5,
+        image: 'https://via.placeholder.com/300',
+        name: 'Súťažné podklady pre školstvo',
+        rating: 4.2,
+        usages: 512,
+        comments: [
+            { username: 'Podkladnik 9', text: 'Veľmi užitočné pre vzdelávacie účely.' },
+            { username: 'Podkladnik 10', text: 'Veľmi mi to pomohlo v mojom projekte.' }
+        ]
+    },
+    {
+        id: 6,
+        image: 'https://via.placeholder.com/300',
+        name: 'Súťažné podklady pre stavebníctvo',
+        rating: 4.7,
+        usages: 782,
+        comments: [
+            { username: 'Podkladnik 11', text: 'Vynikajúca šablóna pre stavebné projekty.' },
+            { username: 'Podkladnik 12', text: 'Veľmi podrobné a komplexné.' }
+        ]
+    },
+    {
+        id: 7,
+        image: 'https://via.placeholder.com/300',
+        name: 'Súťažné podklady pre IT projekty',
+        rating: 4.9,
+        usages: 1024,
+        comments: [
+            { username: 'Podkladnik 13', text: 'Perfektné pre IT projekty.' },
+            { username: 'Podkladnik 14', text: 'Vysoko odporúčané pre tech projekty.' }
+        ]
+    },
+    {
+        id: 8,
+        image: 'https://via.placeholder.com/300',
+        name: 'Súťažné podklady pre environmentálne projekty',
+        rating: 4.3,
+        usages: 467,
+        comments: [
+            { username: 'Podkladnik 15', text: 'Skvelé pre environmentálne iniciatívy.' },
+            { username: 'Podkladnik 16', text: 'Veľmi užitočné a podrobné.' }
         ]
     }
 ];

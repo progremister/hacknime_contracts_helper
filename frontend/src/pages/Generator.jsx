@@ -4,6 +4,7 @@ import ChatWidget from '../components/ChatWidget/ChatWidget';
 import Header from '../components/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestion, faXmark } from '@fortawesome/free-solid-svg-icons';
+import PriceRecommendModal from '../components/PriceRecommendModal';
 
 const initialJsonData = {
   "NAZOV_ZAKAZKY_1": 'Kvetinače',
@@ -29,24 +30,6 @@ const initialJsonData = {
   "MESTO": "Bratislave",
   "DATUM_3": "22.06.2024",
   "MENO_PRIEZVISKO_1": "Dmytro Kolosovskyi"
-};
-
-const Modal = ({ show, onClose }) => {
-  if (!show) return null;
-  return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white p-4 rounded shadow-lg w-96 relative">
-        <h2 className="text-xl font-bold mb-4">Recommended Price Info</h2>
-        <p>This price is calculated based on various market factors and historical data.</p>
-        <button
-          className="mt-4  px-4 py-2 absolute top-[0.1rem] right-3 hover:cursor-pointer hover:scale-[1.10]"
-          onClick={onClose}
-        >   
-            <FontAwesomeIcon icon={faXmark} />        
-        </button>
-      </div>
-    </div>
-  );
 };
 
 const Generator = () => {
@@ -159,9 +142,9 @@ const Generator = () => {
               {key.includes('TABLE') && (
                 <div key={key} className='mb-4'>
                   <div className="flex justify-between">
-                    <label className='block text-gray-700 font-bold mb-1'>Table Items:</label>
+                    <label className='block text-gray-700 font-bold mb-1'>Položky tabuľky:</label>
                     <div className='mb-4 flex gap-3 items-center'>
-                      <label className='block text-gray-700 font-bold mb-1 lh-[1.2]'>Show Recommended Prices:</label>
+                      <label className='block text-gray-700 font-bold mb-1 lh-[1.2]'>AI odporúčané ceny:</label>
                       <input
                         type='checkbox'
                         checked={showRecommendedPrice}
@@ -187,17 +170,17 @@ const Generator = () => {
                           className='bg-red-500 text-white px-2 py-1 rounded'
                           onClick={() => handleRemoveRow(rowIndex)}
                         >
-                          Remove
+                          Odstrániť
                         </button>
                       </div>
                       {showRecommendedPrice && (
-                        <div className='text-gray-700 items-center flex gap-2'>
-                          Recommended Price: <span className='font-bold'>$12.43</span>
-                          <FontAwesomeIcon
-                            icon={faQuestion}
-                            className='hover:scale-[1.10] hover:cursor-pointer'
-                            onClick={handleQuestionClick}
-                          />
+                        <div className='text-gray-700 items-center flex gap-1'>
+                          Odporúčaná cena: 
+                          <div className='flex hover:scale-[1.10] hover:cursor-pointer gap-1 items-center'
+                            onClick={handleQuestionClick}>
+                                <span className='font-bold'>11.98€</span>
+                                <FontAwesomeIcon icon={faQuestion} />
+                          </div>
                         </div>
                       )}
                     </div>
@@ -207,18 +190,18 @@ const Generator = () => {
                     className='bg-green-500 text-white px-2 py-1 mt-2 rounded'
                     onClick={handleAddRow}
                   >
-                    Add Row
+                    Pridať riadok
                   </button>
                 </div>
               )}
             </>
           ))}
-          <button type='submit' className='bg-blue-500 text-white px-4 py-2 rounded'>Generate</button>
+          <button type='submit' className='bg-blue-500 text-white px-4 py-2 rounded'>Generovať</button>
         </form>
         <div className='webviewer w-full lg:w-1/2' ref={viewerRef}></div>
       </div>
       <ChatWidget />
-      <Modal show={isModalOpen} onClose={handleModalClose} />
+      <PriceRecommendModal show={isModalOpen} onClose={handleModalClose} />
     </div>
   );
 };

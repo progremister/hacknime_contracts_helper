@@ -12,7 +12,7 @@ function LoginPage() {
         e.preventDefault();
         try {
             localStorage.setItem('email', email);
-            navigate('/');
+            navigate('/search');
         } catch (err) {
             alert('Invalid email or password');
         }
@@ -24,10 +24,14 @@ function LoginPage() {
 
     return (
         <div className='h-screen w-screen flex items-center justify-center absolute z-50 px-4 bg-blue-50'>
-            <div className='max-w-xl w-full mx-auto p-6 bg-white shadow-md rounded-md mt-2'>
-                <h1 className='text-2xl sm:text-4xl font-bold text-center text-gray-700'>
-                    Sign in to your account
-                </h1>
+            <div className='max-w-xl w-full mx-auto p-6 bg-white shadow-md rounded-lg mt-2 flex flex-col justify-center'>
+                <div
+                    className='flex items-center gap-2 hover:cursor-pointer text-2xl sm:text-4xl font-bold text-center text-gray-700 m-auto'
+                    onClick={() => navigate('/search', { replace: true })}
+                >
+                    <img src="./assets/logo.png" alt="logo" className='w-16 h-16'/>
+                    <div className='font-bold'>Podklady.sk</div>
+                </div>
                 <form onSubmit={(e) => handleSubmit(e)} className='mt-10'>
                     <div className='mb-4'>
                         <label htmlFor='name' className='block text-gray-700 font-semibold mb-2'>
