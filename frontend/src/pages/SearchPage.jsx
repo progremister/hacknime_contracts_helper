@@ -237,7 +237,7 @@ const data = [
     {
         id: 1,
         image: '../assets/contract-1.png',
-        name: 'Súťažné podklady pre zdravotníctvo',
+        name: 'Verejná súťaž pre zdravotníctvo',
         rating: 4.5,
         usages: 1242,
         comments: [
@@ -248,8 +248,8 @@ const data = [
     },
     {
         id: 2,
-        image: 'https://via.placeholder.com/300',
-        name: 'Súťažné podklady pre nehnuteľnosti',
+        image: '../assets/contract-2.png',
+        name: 'Rámcová dohoda pre nehnuteľnosti',
         rating: 3.7,
         usages: 343,
         comments: [
@@ -260,8 +260,8 @@ const data = [
     },
     {
         id: 3,
-        image: 'https://via.placeholder.com/300',
-        name: 'Súťažné podklady pre verejnú dopravu',
+        image: '../assets/contract-3.png',
+        name: 'Nadlimitná zákazka pre verejnú dopravu',
         rating: 4.0,
         usages: 423,
         comments: [
@@ -272,8 +272,8 @@ const data = [
     },
     {
         id: 4,
-        image: 'https://via.placeholder.com/300',
-        name: 'Súťažné podklady pre verejné technické zariadenia',
+        image: '../assets/contract-3.png',
+        name: 'Nadlimitná zákazka pre verejné technické zariadenia',
         rating: 3.8,
         usages: 423,
         comments: [
@@ -284,8 +284,8 @@ const data = [
     },
     {
         id: 5,
-        image: 'https://via.placeholder.com/300',
-        name: 'Súťažné podklady pre školstvo',
+        image: '../assets/contract-4.png',
+        name: 'Verejná súťaž pre školstvo',
         rating: 4.2,
         usages: 512,
         comments: [
@@ -296,8 +296,8 @@ const data = [
     },
     {
         id: 6,
-        image: 'https://via.placeholder.com/300',
-        name: 'Súťažné podklady pre stavebníctvo',
+        image: '../assets/contract-2.png',
+        name: 'Rámcová dohoda pre stavebníctvo',
         rating: 4.7,
         usages: 782,
         comments: [
@@ -308,8 +308,8 @@ const data = [
     },
     {
         id: 7,
-        image: 'https://via.placeholder.com/300',
-        name: 'Súťažné podklady pre IT projekty',
+        image: '../assets/contract-1.png',
+        name: 'Verejná súťaž pre IT projekty',
         rating: 4.9,
         usages: 1024,
         comments: [
@@ -320,8 +320,8 @@ const data = [
     },
     {
         id: 8,
-        image: 'https://via.placeholder.com/300',
-        name: 'Súťažné podklady pre environmentálne projekty',
+        image: '../assets/contract-5.png',
+        name: 'Zmluva o poskitnuťí služieb',
         rating: 4.3,
         usages: 467,
         comments: [
