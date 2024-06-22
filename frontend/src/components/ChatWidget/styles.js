@@ -2,8 +2,7 @@ export const styles = {
     chatWidget: {
         backgroundColor: 'rgb(77 145 255)',
         borderRadius: '10px',
-        width: '150px',
-        padding: '10px 0',
+        padding: '10px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -19,7 +18,6 @@ export const styles = {
     },
     modalWindow: {
         position: 'fixed',
-        width: '400px',
         bottom: '20px',
         right: '20px',
         backgroundColor: 'white',

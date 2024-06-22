@@ -48,7 +48,7 @@ function ChatWidget() {
                         style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                     >
                         <BsFillChatFill size={20} color='white' />
-                        <span style={styles.chatWidgetText}>Check with AI!</span>
+                        <span style={styles.chatWidgetText}>Skontrolujte pomocou AI!</span>
                     </div>
                 </div>
             )}

@@ -5,13 +5,13 @@ import { MdError } from 'react-icons/md';
 import { styles } from '../styles';
 
 const messages = [
-    'Uploading document...',
-    'Analyzing document...',
-    'Completed Analyzing',
-    'Checking for compliance...',
-    'Completed compliance',
-    'Finalizing document review...',
-    'Document is approved!',
+    'Nahrávanie dokumentu...',
+    'Analyzovanie dokumentu...',
+    'Analyzovanie dokončené',
+    'Kontrola zhody...',
+    'Kontrola zhody dokončená',
+    'Dokončovanie kontroly dokumentu...',
+    'Dokument je schválený!',
 ];
 
 function ModalWindow({ visible, setVisible, loadingStep, setLoadingStep, failureStep }) {
@@ -52,9 +52,7 @@ function ModalWindow({ visible, setVisible, loadingStep, setLoadingStep, failure
                     <BsCheckCircle size={24} color='green' />
                 )}
                 <span style={{ marginLeft: '10px' }}>
-                    {isFailure
-                        ? 'Process failed: does not meet all requirements'
-                        : messages[loadingStep]}
+                    {isFailure ? 'Proces zlyhal: nespĺňa všetky požiadavky' : messages[loadingStep]}
                 </span>
             </div>
         </div>
