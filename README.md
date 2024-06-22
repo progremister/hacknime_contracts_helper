@@ -8,37 +8,52 @@ PodkladniSk is a powerful application designed to revolutionize the management o
 
 [Podkladni.sk](https://podklady-sk.netlify.app/)
 
-## Screenshots 📸
-
 ### Registration 📝
+Registration page, where you can also register via IS EVO and Google account
 
-<img src="photos/registration.png" alt="Registration Screen" width="400"/>
-**Description**: The registration screen allows new users to create an account with ease, ensuring secure access to all features of PodkladniSk.
+<img src="photos/registration.png" alt="Registration Screen" width="500"/>
 
 ### Home Page 🏠
+The main page contains various copies of contracts and tenders, as well as the ability to search for documents, view usage, evaluation and comments
 
-![Home Page](link-to-home-page-screenshot)
-**Description**: The home page provides a comprehensive overview of available templates and recent activity, offering quick access to key functionalities.
+<img src="photos/main-page.png" alt="Registration Screen" width="700"/>
 
 ### Editing Area ✏️
+**The main page contains various copies of contracts and tenders, as well as the ability to search for documents, view usage, evaluation and comments**
 
-![Editing Area](link-to-editing-area-screenshot)
-**Description**: The editing area is where Uradnik can create and update contract templates, ensuring they comply with the latest laws. Podkldanik can dynamically fill in these templates to generate specific contract instances.
+<img src="photos/editing-page.png" alt="Registration Screen" width="700"/>
 
-## API Description 🔗
+**An area for editing documents, where you can find various tools for formatting and modifying contracts**
 
-PodkladniSk's API simplifies and enhances the creation of tenders and contracts, providing access to up-to-date templates. It integrates seamlessly with various systems to ensure data consistency and operational efficiency.
+<img src="photos/editing-zone.png" alt="Registration Screen" width="700"/>
+<img src="photos/transition-document.png" alt="Registration Screen" width="700"/>
+<img src="photos/signature-zone.png" alt="Registration Screen" width="700"/>
 
-### API Features 💡
+**Area for commenting on the contract**
 
-1. **Data Extraction**: Automatically extracts relevant data from government databases to populate contract templates.
-2. **Real-Time Updates**: Ensures that Uradnik and Podkldanik have access to the most current information, fostering efficient collaboration.
-3. **Secure Data Exchange**: Protects all data exchanged through the API with robust security measures, safeguarding sensitive information.
+<img src="photos/editing-comments-zone.png" alt="Registration Screen" width="700"/>
+
+**Also, in the area of data filling, we can use the ability to offer prices for purchases using Artificial Intelligence**
+
+<img src="photos/recommendation-price.png" alt="Registration Screen" width="700"/>
+
+**Artificial Intelligence can also explain why it decided to offer this particular price and show a graph that will describe more specifically**
+
+<img src="photos/graf-about-price.png" alt="Registration Screen" width="700"/>
+
+
+## API Integration 🔗
+
+Our application also has possible integrations with other applications. We have an established API for receiving updated templates and retrieving saved documents
 
 ### API Screenshots 📊
 
-![API SwaggerUI](link-to-api-swaggerui-screenshot)
-**Description**: A screenshot of SwaggerUI displaying the API for interaction with PodkladniSk, showcasing how other organizations can use our API for their own purposes.
+<img src="photos/api-integration.jpg" alt="Registration Screen" width="700"/>
+
+**Data that can be obtained from the API**
+
+<img src="photos/api-json.jpg" alt="Registration Screen" width="700"/>
+
 
 ## Frontend 🖥️
 
